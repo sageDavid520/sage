@@ -118,7 +118,7 @@ static RTMP* connect_rtmp_server(char *addr){
 		goto __ERROR;
 	}
 	
-	RTMP_Enable(rtmp);
+	RTMP_EnableWrite(rtmp);
 	
 	RTMP_ConnectStream(rtmp,0);
 	
