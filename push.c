@@ -103,7 +103,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	
 	dataTmpSize = fread((*packet)->m_body,1,tagDataSize,fp);
 	
-	if(dataTmpSize!=tagDataSize){
+	if(dataTmpSize != tagDataSize){
 		printf("Failed to read tag body from flv,(tagDataSize=%zu:dataTmpSize=%d)\n",tagDataSize,dataTmpSize);
 		goto __ERROR;
 	}
@@ -128,7 +128,7 @@ static RTMPPacket* alloc_packet(){
 	
 	pack =(RTMPPacket*) malloc(sizeof(RTMPPacket));
 	if(!pack){
-		printf("No Memory");
+		printf("Failed to alloc memory\n");
 		return NULL;
 	}
 	RTMPPacket_Alloc(pack,64*1024);
