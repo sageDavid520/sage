@@ -165,6 +165,7 @@ static void send_data(FILE *fp,RTMP *rtmp){
 			printf("Failed to send packet\n");
 			break;
 		}
+		printf("++3++\n");
 		preTs = packet->m_nTimeStamp;
 		printf("4\n");
 	}
