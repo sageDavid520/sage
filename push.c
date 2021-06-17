@@ -207,7 +207,7 @@ __ERROR:
 
 void pushlish_stream(){
 	char *flv = "./SampleVideo_1280x720_20mb.flv";
-	char *rtmpaddr = "rtmp://ai-livepush.zbitcloud.com/live/5_1623907100?txSecret=f37811802ebd354dd90be955e291f716&txTime=60cb054c";
+	char *rtmpaddr = "rtmp://ai-livepush.zbitcloud.com/live/5_1623929909?txSecret=54ce525a197af8d55f4e5dee9f5ac4a7&txTime=60cb5e65";
 	FILE *fp = open_flv(flv);
 	RTMP *rtmp = connect_rtmp_server(rtmpaddr);
 	send_data(fp,rtmp);
