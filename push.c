@@ -18,10 +18,9 @@ static FILE* open_flv(char *file_name){
 }
 
 static void read_u8(FILE *fp,unsigned int *u8){
-	//unsigned int tmp;
-	//fread(&tmp,1,1,fp);
-	//*u8 = ((tmp>>8&0xff)|(tmp<<8&0xff00));
-	fread(u8,1,1,fp);
+	unsigned int tmp;
+	fread(&tmp,1,1,fp);
+	*u8 = ((tmp>>8&0xff)|(tmp<<8&0xff00));
 	return ;
 }
 
