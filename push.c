@@ -35,7 +35,7 @@ static void read_u24(FILE *fp,unsigned int *u24){
 static void read_u32(FILE *fp,unsigned int *u32){
 	unsigned int tmp;
 	fread(&tmp,1,4,fp);
-	*u32 = ((tmp>>24&0xff)|(tmp>>8&0xff00)|(tmp<<8&0xff0000)|(tmp<<24&0xff000000));
+	*u32 = ((tmp >> 24 & 0xFF)|(tmp >> 8 & 0xFF00)|(tmp << 8 & 0xFF00)|(tmp << 24 & 0xFF000000));
 	return ;
 }
 
@@ -54,20 +54,16 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	unsigned int tt;
 	unsigned int tagDataSize;
 	unsigned int ts;
-	//unsigned int tsExt;
 	unsigned int streamId;
+	unsigned int preDataSize;
 	
 	read_u8(fp,&tt);
 	read_u24(fp,&tagDataSize);
 	read_ts(fp,&ts);
-	//read_u24(fp,&ts);
-	//read_u8(fp,&tsExt);
 	read_u24(fp,&streamId);
 	
 	printf("tt:%d\n",tt);
 	printf("tagDataSize:%d\n",tagDataSize);
-	//printf("ts:%d\n",ts);
-	//printf("tsExt:%d\n",tsExt);
 	printf("ts:%d\n",ts);
 	printf("streamId:%d\n",streamId);
 	printf("=======================================\n");
@@ -83,7 +79,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	(*packet)->m_packetType = tt;
 	(*packet)->m_nBodySize = dataTmpSize;
 	
-	fseek(fp,4,SEEK_CUR);
+	read_u32(fp,&preDataSize);
 	return 0;
 	
 }
@@ -111,11 +107,7 @@ static void send_data(FILE *fp,RTMP *rtmp){
 	packet->m_nInfoField2 = rtmp->m_stream_id;
 	
 	printf("=======================================\n");
-	int i=1;
 	while(1){
-		if(i==5){
-		//	break;
-		}
 		if(read_data(fp,&packet)){
 			printf("over\n");
 			break;
@@ -125,16 +117,11 @@ static void send_data(FILE *fp,RTMP *rtmp){
 			printf("Disconnect...\n");
 			break;
 		}
+		
 		diffTs = packet->m_nTimeStamp - preTs;
-		
 		usleep(diffTs * 1000);
-		
 		RTMP_SendPacket(rtmp,packet,0);
-		
 		preTs = packet->m_nTimeStamp;
-		
-		//usleep(1000000);
-		//usleep(5000);	
 	}
 	return ;
 }
