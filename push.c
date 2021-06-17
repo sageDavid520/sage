@@ -93,11 +93,11 @@ static void send_data(FILE *fp,RTMP *rtmp){
 	packet = alloc_packet();
 	packet->m_nInfoField2 = rtmp->m_stream_id;
 	printf("=======================================\n");
-	//int i=1;
+	int i=1;
 	while(1){
-		//if(i==3){
-		//	break;
-		//}
+		if(i==5){
+			break;
+		}
 		if(read_data(fp,&packet)){
 			printf("over\n");
 			break;
@@ -107,7 +107,7 @@ static void send_data(FILE *fp,RTMP *rtmp){
 			printf("Disconnect...\n");
 			break;
 		}
-		//i++;
+		i++;
 		RTMP_SendPacket(rtmp,packet,0);
 		usleep(10000);
 	}
