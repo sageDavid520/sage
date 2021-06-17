@@ -65,7 +65,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	printf("tagDataSize:%d\n",tagDataSize);
 	printf("ts:%d\n",ts);
 	printf("streamId:%d\n",streamId);
-	printf("=======================================\n");
+	printf("tt:%d\t tagDataSize:%d\t ts:%d\t streamId:%d\t\n",tt,tagDataSize,ts,streamId);
 	
 	dataTmpSize = fread((*packet)->m_body,1,tagDataSize,fp);
 	if(dataTmpSize!=tagDataSize){
@@ -105,7 +105,6 @@ static void send_data(FILE *fp,RTMP *rtmp){
 	packet = alloc_packet();
 	packet->m_nInfoField2 = rtmp->m_stream_id;
 	
-	printf("=======================================\n");
 	while(1){
 		if(read_data(fp,&packet)){
 			printf("over\n");
