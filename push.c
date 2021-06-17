@@ -48,7 +48,7 @@ static void read_ts(FILE *fp,unsigned int *ts){
 }
 
 static int read_data(FILE *fp,RTMPPacket **packet){
-	int ret =1;
+	int ret = 1;
 	int dataTmpSize = 0;
 	
 	unsigned int tt;
@@ -105,8 +105,11 @@ static RTMPPacket* alloc_packet(){
 
 static void send_data(FILE *fp,RTMP *rtmp){
 	RTMPPacket *packet = NULL;
+	unsigned int preTs = 0;
+	unsigned int diffTs = 0;
 	packet = alloc_packet();
 	packet->m_nInfoField2 = rtmp->m_stream_id;
+	
 	printf("=======================================\n");
 	int i=1;
 	while(1){
@@ -122,8 +125,14 @@ static void send_data(FILE *fp,RTMP *rtmp){
 			printf("Disconnect...\n");
 			break;
 		}
-		i++;
+		diffTs = packet->m_nTimeStamp - preTs;
+		
+		usleep(diffTs * 1000);
+		
 		RTMP_SendPacket(rtmp,packet,0);
+		
+		preTs = packet->m_nTimeStamp;
+		
 		//usleep(500000);
 		usleep(5000);	
 	}
