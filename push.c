@@ -53,10 +53,12 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	read_u32(fp,&ts);
 	read_u24(fp,&streamId);
 	
+	printf("=======================================\n");
 	printf("tt:%d\n",tt);
 	printf("tagDataSize:%d\n",tagDataSize);
 	printf("ts:%d\n",ts);
 	printf("streamId:%d\n",streamId);
+	printf("=======================================\n");
 	
 	dataTmpSize = fread((*packet)->m_body,1,tagDataSize,fp);
 	if(dataTmpSize!=tagDataSize){
