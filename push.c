@@ -59,7 +59,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	
 	read_u8(fp,&tt);
 	read_u24(fp,&tagDataSize);
-	read_ts(fp,ts);
+	read_ts(fp,&ts);
 	//read_u24(fp,&ts);
 	//read_u8(fp,&tsExt);
 	read_u24(fp,&streamId);
@@ -68,7 +68,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	printf("tagDataSize:%d\n",tagDataSize);
 	//printf("ts:%d\n",ts);
 	//printf("tsExt:%d\n",tsExt);
-	printf("ts:%d\n",&ts);
+	printf("ts:%d\n",ts);
 	printf("streamId:%d\n",streamId);
 	printf("=======================================\n");
 	
