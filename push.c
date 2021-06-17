@@ -68,7 +68,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	printf("tagDataSize:%d\n",tagDataSize);
 	//printf("ts:%d\n",ts);
 	//printf("tsExt:%d\n",tsExt);
-	printf("ts:%d\n",ts);
+	printf("ts:%d\n",&ts);
 	printf("streamId:%d\n",streamId);
 	printf("=======================================\n");
 	
