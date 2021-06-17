@@ -53,7 +53,6 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	read_u32(fp,&ts);
 	read_u24(fp,&streamId);
 	
-	printf("=======================================\n");
 	printf("tt:%d\n",tt);
 	printf("tagDataSize:%d\n",tagDataSize);
 	printf("ts:%d\n",ts);
@@ -93,6 +92,7 @@ static void send_data(FILE *fp,RTMP *rtmp){
 	RTMPPacket *packet = NULL;
 	packet = alloc_packet();
 	packet->m_nInfoField2 = rtmp->m_stream_id;
+	printf("=======================================\n");
 	while(1){
 		if(read_data(fp,&packet)){
 			printf("over\n");
