@@ -113,6 +113,7 @@ static void send_data(FILE *fp,RTMP *rtmp){
 		}
 		
 		diffTs = packet->m_nTimeStamp - preTs;
+		printf(diffTs * 1000);
 		usleep(diffTs * 1000);
 		RTMP_SendPacket(rtmp,packet,0);
 		preTs = packet->m_nTimeStamp;
