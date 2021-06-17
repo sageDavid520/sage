@@ -43,7 +43,7 @@ static void read_ts(FILE *fp,unsigned int *ts){
 	unsigned int tmp;
 	fread(&tmp,1,4,fp);
 	
-	*ts = ((tmp >> 16) & 0xFF) | ((tmp << 16) & 0xFF0000) | (tmp & 0xff00)) | (tmp & 0xFF000000);
+	*ts = ((tmp >> 16) & 0xFF) | ((tmp << 16) & 0xFF0000) | (tmp & 0xff00) | (tmp & 0xFF000000);
 	return ;
 }
 
