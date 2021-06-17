@@ -133,8 +133,8 @@ static void send_data(FILE *fp,RTMP *rtmp){
 		
 		preTs = packet->m_nTimeStamp;
 		
-		//usleep(500000);
-		usleep(5000);	
+		//usleep(1000000);
+		//usleep(5000);	
 	}
 	return ;
 }
