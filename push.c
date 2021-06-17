@@ -51,7 +51,7 @@ static int read_u32(FILE *fp,unsigned int *u32){
 	if(ret != 4){
 		return 1;
 	}
-	printf("==============================");
+	
 	*u32 = ((tmp >> 24 & 0xFF)|(tmp >> 8 & 0xFF00)|(tmp << 8 & 0xFF00)|(tmp << 24 & 0xFF000000));
 	return 0;
 }
