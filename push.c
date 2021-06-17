@@ -161,7 +161,7 @@ static void send_data(FILE *fp,RTMP *rtmp){
 			break;
 		}
 		printf("3\n");
-		printf(RTMP_SendPacket(rtmp,packet,0));
+		printf("===%d===\n",RTMP_SendPacket(rtmp,packet,0));
 		preTs = packet->m_nTimeStamp;
 		printf("4\n");
 	}
