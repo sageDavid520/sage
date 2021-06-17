@@ -159,7 +159,7 @@ static void send_data(FILE *fp,RTMP *rtmp){
 		usleep(diffTs * 1000);
 		RTMP_SendPacket(rtmp,packet,0);
 		preTs = packet->m_nTimeStamp;*/
-		printf('cxxx');
+		printf("==============cxxx===============");
 	}
 	return ;
 }
