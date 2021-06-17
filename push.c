@@ -95,7 +95,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	}
 	
 	if(read_u24(fp,&streamId)){
-		printf("Failed to read 3 byte stream id\n")
+		printf("Failed to read 3 byte stream id\n");
 		goto __ERROR;
 	}
 	
