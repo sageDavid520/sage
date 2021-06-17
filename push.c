@@ -39,6 +39,14 @@ static void read_u32(FILE *fp,unsigned int *u32){
 	return ;
 }
 
+static void read_ts(FILE *fp,unsigned int *ts){
+	unsigned int tmp;
+	fread(&tmp,1,4,fp);
+	
+	*ts = ((tmp >> 16) & 0xFF) | ((tmp << 16) & 0xFF0000) | (tmp & 0xff00)) | (tmp & 0xFF000000);
+	return ;
+}
+
 static int read_data(FILE *fp,RTMPPacket **packet){
 	int ret =1;
 	int dataTmpSize = 0;
@@ -46,19 +54,21 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	unsigned int tt;
 	unsigned int tagDataSize;
 	unsigned int ts;
-	unsigned int tsExt;
+	//unsigned int tsExt;
 	unsigned int streamId;
 	
 	read_u8(fp,&tt);
 	read_u24(fp,&tagDataSize);
-	read_u24(fp,&ts);
-	read_u8(fp,&tsExt);
+	read_ts(fp,ts);
+	//read_u24(fp,&ts);
+	//read_u8(fp,&tsExt);
 	read_u24(fp,&streamId);
 	
 	printf("tt:%d\n",tt);
 	printf("tagDataSize:%d\n",tagDataSize);
+	//printf("ts:%d\n",ts);
+	//printf("tsExt:%d\n",tsExt);
 	printf("ts:%d\n",ts);
-	printf("tsExt:%d\n",tsExt);
 	printf("streamId:%d\n",streamId);
 	printf("=======================================\n");
 	
@@ -70,6 +80,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	
 	(*packet)->m_headerType = RTMP_PACKET_SIZE_LARGE;
 	(*packet)->m_nTimeStamp = ts;
+	(*packet)->m_packetType = tt;
 	(*packet)->m_nBodySize = dataTmpSize;
 	
 	fseek(fp,4,SEEK_CUR);
