@@ -153,15 +153,15 @@ static void send_data(FILE *fp,RTMP *rtmp){
 			break;
 		}
 		printf("2\n");
+		diffTs = packet->m_nTimeStamp - preTs;
+		//printf("diffTs:%d\n",(diffTs * 1000));
+		usleep(diffTs * 1000);
 		if(!RTMP_IsConnected(rtmp)){
 			printf("Disconnect...\n");
 			break;
 		}
 		printf("3\n");
-		diffTs = packet->m_nTimeStamp - preTs;
-		//printf("diffTs:%d\n",(diffTs * 1000));
-		usleep(diffTs * 1000);
-		RTMP_SendPacket(rtmp,packet,0);
+		printf(RTMP_SendPacket(rtmp,packet,0));
 		preTs = packet->m_nTimeStamp;
 		printf("4\n");
 	}
