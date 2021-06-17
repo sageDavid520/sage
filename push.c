@@ -17,33 +17,52 @@ static FILE* open_flv(char *file_name){
 	return fp;
 }
 
-static void read_u8(FILE *fp,unsigned int *u8){
+static int read_u8(FILE *fp,unsigned int *u8){
+	int ret;
 	unsigned int tmp;
-	fread(&tmp,1,1,fp);
-	*u8 = (tmp & 0xff);
-	return ;
-}
-
-static void read_u24(FILE *fp,unsigned int *u24){
-	unsigned int tmp;
-	fread(&tmp,1,3,fp);
-	*u24 = (((tmp>>16) & 0xFF) | ((tmp << 16) & 0xFF0000) | (tmp & 0xff00));
-	return ;
-}
-
-static void read_u32(FILE *fp,unsigned int *u32){
-	unsigned int tmp;
-	fread(&tmp,1,4,fp);
-	*u32 = ((tmp >> 24 & 0xFF)|(tmp >> 8 & 0xFF00)|(tmp << 8 & 0xFF00)|(tmp << 24 & 0xFF000000));
-	return ;
-}
-
-static void read_ts(FILE *fp,unsigned int *ts){
-	unsigned int tmp;
-	fread(&tmp,1,4,fp);
+	ret = fread(&tmp,1,1,fp);
+	if(ret! = 1){
+		return 1;
+	}
 	
+	*u8 = (tmp & 0xff);
+	return 0;
+}
+
+static int read_u24(FILE *fp,unsigned int *u24){
+	int ret;
+	unsigned int tmp;
+	ret = fread(&tmp,1,3,fp);
+	if(ret! = 3){
+		return 1;
+	}
+	
+	*u24 = (((tmp>>16) & 0xFF) | ((tmp << 16) & 0xFF0000) | (tmp & 0xff00));
+	return 0;
+}
+
+static int read_u32(FILE *fp,unsigned int *u32){
+	int ret;
+	unsigned int tmp;
+	ret = fread(&tmp,1,4,fp);
+	if(ret! = 4){
+		return 1;
+	}
+	
+	*u32 = ((tmp >> 24 & 0xFF)|(tmp >> 8 & 0xFF00)|(tmp << 8 & 0xFF00)|(tmp << 24 & 0xFF000000));
+	return 0;
+}
+
+static int read_ts(FILE *fp,unsigned int *ts){
+	int ret;
+	unsigned int tmp;
+	ret = fread(&tmp,1,4,fp);
+	if(ret! = 4){
+		return 1;
+	}
+		
 	*ts = ((tmp >> 16) & 0xFF) | ((tmp << 16) & 0xFF0000) | (tmp & 0xff00) | (tmp & 0xFF000000);
-	return ;
+	return 0;
 }
 
 static int read_data(FILE *fp,RTMPPacket **packet){
@@ -56,10 +75,25 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	unsigned int streamId;
 	unsigned int preDataSize;
 	
-	read_u8(fp,&tt);
-	read_u24(fp,&tagDataSize);
-	read_ts(fp,&ts);
-	read_u24(fp,&streamId);
+	if(read_u8(fp,&tt)){
+		printf("Read 1 byte type data error\n")
+		goto __ERROR;
+	}
+	
+	if(read_u24(fp,&tagDataSize)){
+		printf("Read 3 byte tag data size data error\n")
+		goto __ERROR;
+	}
+	
+	if(read_ts(fp,&ts)){
+		printf("Read 4 byte ts data error\n")
+		goto __ERROR;
+	}
+	
+	if(read_u24(fp,&streamId)){
+		printf("Read 3 byte stream id data error\n")
+		goto __ERROR;
+	}
 	
 	printf("tt:%d\t tagDataSize:%d\t ts:%d\t streamId:%d\t\n",tt,tagDataSize,ts,streamId);
 	
@@ -74,9 +108,13 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	(*packet)->m_packetType = tt;
 	(*packet)->m_nBodySize = dataTmpSize;
 	
-	read_u32(fp,&preDataSize);
+	if(read_u32(fp,&preDataSize)){
+		printf("Read 4 byte pre tag data size data error\n")
+		goto __ERROR;
+	}
 	return 0;
-	
+__ERROR:
+	return 1;
 }
 
 static RTMPPacket* alloc_packet(){
