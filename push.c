@@ -40,12 +40,12 @@ static void read_u32(FILE *fp,unsigned int *u32){
 
 static int read_data(FILE *fp,RTMPPacket **packet){
 	int ret =1;
+	int dataTmpSize = 0;
 	
 	unsigned int tt;
 	unsigned int tagDataSize;
 	unsigned int ts;
 	unsigned int streamId;
-	unsigned int dataTmpSize;
 	
 	read_u8(fp,&tt);
 	read_u24(fp,&tagDataSize);
@@ -60,7 +60,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	
 	(*packet)->m_headerType = RTMP_PACKET_SIZE_LARGE;
 	(*packet)->m_nTimeStamp = ts;
-	(*packet)->m_nBodySize = dataSize;
+	(*packet)->m_nBodySize = dataTmpSize;
 	
 	return 0;
 	
