@@ -102,10 +102,11 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	printf("tt:%d\t tagDataSize:%d\t ts:%d\t streamId:%d\t\n",tt,tagDataSize,ts,streamId);
 	
 	dataTmpSize = fread((*packet)->m_body,1,tagDataSize,fp);
+	/*
 	if(dataTmpSize!=tagDataSize){
 		printf("Failed to read tag body from flv,(tagDataSize=%zu:dataTmpSize=%d)\n",tagDataSize,dataTmpSize);
 		goto __ERROR;
-	}
+	}*/
 
 	(*packet)->m_headerType = RTMP_PACKET_SIZE_LARGE;
 	(*packet)->m_nTimeStamp = ts;
