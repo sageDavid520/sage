@@ -20,8 +20,9 @@ static FILE* open_flv(char *file_name){
 static int read_u8(FILE *fp,unsigned int *u8){
 	int ret;
 	unsigned int tmp;
+	
 	ret = fread(&tmp,1,1,fp);
-	if(ret! = 1){
+	if(ret != 1){
 		return 1;
 	}
 	
@@ -32,8 +33,9 @@ static int read_u8(FILE *fp,unsigned int *u8){
 static int read_u24(FILE *fp,unsigned int *u24){
 	int ret;
 	unsigned int tmp;
+	
 	ret = fread(&tmp,1,3,fp);
-	if(ret! = 3){
+	if(ret != 3){
 		return 1;
 	}
 	
@@ -44,8 +46,9 @@ static int read_u24(FILE *fp,unsigned int *u24){
 static int read_u32(FILE *fp,unsigned int *u32){
 	int ret;
 	unsigned int tmp;
+	
 	ret = fread(&tmp,1,4,fp);
-	if(ret! = 4){
+	if(ret != 4){
 		return 1;
 	}
 	
@@ -56,8 +59,9 @@ static int read_u32(FILE *fp,unsigned int *u32){
 static int read_ts(FILE *fp,unsigned int *ts){
 	int ret;
 	unsigned int tmp;
+	
 	ret = fread(&tmp,1,4,fp);
-	if(ret! = 4){
+	if(ret != 4){
 		return 1;
 	}
 		
@@ -76,22 +80,22 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	unsigned int preDataSize;
 	
 	if(read_u8(fp,&tt)){
-		printf("Read 1 byte type data error\n")
+		printf("Failed to read 1 byte type\n")
 		goto __ERROR;
 	}
 	
 	if(read_u24(fp,&tagDataSize)){
-		printf("Read 3 byte tag data size data error\n")
+		printf("Failed to read 3 byte tag data size\n")
 		goto __ERROR;
 	}
 	
 	if(read_ts(fp,&ts)){
-		printf("Read 4 byte ts data error\n")
+		printf("Failed to read 4 byte ts\n")
 		goto __ERROR;
 	}
 	
 	if(read_u24(fp,&streamId)){
-		printf("Read 3 byte stream id data error\n")
+		printf("Failed to read 3 byte stream id\n")
 		goto __ERROR;
 	}
 	
@@ -100,7 +104,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	dataTmpSize = fread((*packet)->m_body,1,tagDataSize,fp);
 	if(dataTmpSize!=tagDataSize){
 		printf("Failed to read tag body from flv,(tagDataSize=%zu:dataTmpSize=%d)\n",tagDataSize,dataTmpSize);
-		return ret;
+		goto __ERROR;
 	}
 	
 	(*packet)->m_headerType = RTMP_PACKET_SIZE_LARGE;
@@ -109,7 +113,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	(*packet)->m_nBodySize = dataTmpSize;
 	
 	if(read_u32(fp,&preDataSize)){
-		printf("Read 4 byte pre tag data size data error\n")
+		printf("Failed to read 4 byte pre tag data size\n")
 		goto __ERROR;
 	}
 	return 0;
