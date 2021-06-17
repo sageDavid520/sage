@@ -80,17 +80,17 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	unsigned int preDataSize;
 	
 	if(read_u8(fp,&tt)){
-		printf("Failed to read 1 byte type\n")
+		printf("Failed to read 1 byte type\n");
 		goto __ERROR;
 	}
 	
 	if(read_u24(fp,&tagDataSize)){
-		printf("Failed to read 3 byte tag data size\n")
+		printf("Failed to read 3 byte tag data size\n");
 		goto __ERROR;
 	}
 	
 	if(read_ts(fp,&ts)){
-		printf("Failed to read 4 byte ts\n")
+		printf("Failed to read 4 byte ts\n");
 		goto __ERROR;
 	}
 	
@@ -113,7 +113,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	(*packet)->m_nBodySize = dataTmpSize;
 	
 	if(read_u32(fp,&preDataSize)){
-		printf("Failed to read 4 byte pre tag data size\n")
+		printf("Failed to read 4 byte pre tag data size\n");
 		goto __ERROR;
 	}
 	return 0;
