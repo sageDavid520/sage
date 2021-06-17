@@ -120,7 +120,6 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	
 	return 0;
 __ERROR:
-	printf("xxxx");
 	return 1;
 }
 
@@ -147,12 +146,10 @@ static void send_data(FILE *fp,RTMP *rtmp){
 	packet->m_nInfoField2 = rtmp->m_stream_id;
 	
 	while(1){
-		printf("1\n");
 		if(read_data(fp,&packet)){
 			printf("over\n");
 			break;
 		}
-		printf("2\n");
 		diffTs = packet->m_nTimeStamp - preTs;
 		//printf("diffTs:%d\n",(diffTs * 1000));
 		usleep(diffTs * 1000);
@@ -160,14 +157,11 @@ static void send_data(FILE *fp,RTMP *rtmp){
 			printf("Disconnect...\n");
 			break;
 		}
-		printf("3\n");
 		if(!RTMP_SendPacket(rtmp,packet,0)){
 			printf("Failed to send packet\n");
 			break;
 		}
-		printf("++3++\n");
 		preTs = packet->m_nTimeStamp;
-		printf("4\n");
 	}
 	return ;
 }
