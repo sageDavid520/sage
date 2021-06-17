@@ -120,6 +120,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	
 	return 0;
 __ERROR:
+	printf("xxxx");
 	return 1;
 }
 
