@@ -134,7 +134,7 @@ static RTMPPacket* alloc_packet(){
 	RTMPPacket_Alloc(pack,64*1024);
 	RTMPPacket_Reset(pack);
 	pack->m_hasAbsTimestamp = 0;
-	pack->m_nChannel = 0x4;
+	pack->m_nChannel = 0x04;
 	return pack;
 }
 
