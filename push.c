@@ -45,8 +45,8 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	unsigned int tt;
 	unsigned int tagDataSize;
 	unsigned int ts;
-	unsigned int streamId;
 	unsigned int tsExtended;
+	unsigned int streamId;
 	
 	read_u8(fp,&tt);
 	read_u24(fp,&tagDataSize);
@@ -99,7 +99,7 @@ static void send_data(FILE *fp,RTMP *rtmp){
 	int i=1;
 	while(1){
 		if(i==5){
-			break;
+		//	break;
 		}
 		if(read_data(fp,&packet)){
 			printf("over\n");
