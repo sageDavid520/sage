@@ -106,12 +106,12 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 		printf("Failed to read tag body from flv,(tagDataSize=%zu:dataTmpSize=%d)\n",tagDataSize,dataTmpSize);
 		goto __ERROR;
 	}
-	
+	printf("==============cxxx===============\n");
 	(*packet)->m_headerType = RTMP_PACKET_SIZE_LARGE;
 	(*packet)->m_nTimeStamp = ts;
 	(*packet)->m_packetType = tt;
 	(*packet)->m_nBodySize = dataTmpSize;
-	
+	printf("==============cxxx===============\n");
 	if(read_u32(fp,&preDataSize)){
 		printf("Failed to read 4 byte pre tag data size\n");
 		goto __ERROR;
@@ -148,7 +148,7 @@ static void send_data(FILE *fp,RTMP *rtmp){
 			printf("over\n");
 			break;
 		}
-		/*
+		
 		if(!RTMP_IsConnected(rtmp)){
 			printf("Disconnect...\n");
 			break;
@@ -158,8 +158,7 @@ static void send_data(FILE *fp,RTMP *rtmp){
 		//printf("diffTs:%d\n",(diffTs * 1000));
 		usleep(diffTs * 1000);
 		RTMP_SendPacket(rtmp,packet,0);
-		preTs = packet->m_nTimeStamp;*/
-		printf("==============cxxx===============\n");
+		preTs = packet->m_nTimeStamp;
 	}
 	return ;
 }
