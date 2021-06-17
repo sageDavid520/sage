@@ -52,6 +52,11 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	read_u32(fp,&ts);
 	read_u24(fp,&streamId);
 	
+	printf("tt:%d\n",tt);
+	printf("tagDataSize:%d\n",tagDataSize);
+	printf("ts:%d\n",ts);
+	printf("streamId:%d\n",streamId);
+	
 	dataTmpSize = fread((*packet)->m_body,1,tagDataSize,fp);
 	if(dataTmpSize!=tagDataSize){
 		printf("Failed to read tag body from flv,(tagDataSize=%zu:dataTmpSize=%d)\n",tagDataSize,dataTmpSize);
