@@ -167,6 +167,7 @@ static RTMP* connect_rtmp_server(char *addr){
 	
 	rtmp = RTMP_Alloc();
 	if(!rtmp){
+		printf("Failed to alloc memory\n");
 		goto __ERROR;
 	}
 	
