@@ -148,7 +148,7 @@ static void send_data(FILE *fp,RTMP *rtmp){
 			printf("over\n");
 			break;
 		}
-
+		/*
 		if(!RTMP_IsConnected(rtmp)){
 			printf("Disconnect...\n");
 			break;
@@ -158,7 +158,8 @@ static void send_data(FILE *fp,RTMP *rtmp){
 		//printf("diffTs:%d\n",(diffTs * 1000));
 		usleep(diffTs * 1000);
 		RTMP_SendPacket(rtmp,packet,0);
-		preTs = packet->m_nTimeStamp;
+		preTs = packet->m_nTimeStamp;*/
+		printf('cxxx');
 	}
 	return ;
 }
