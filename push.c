@@ -109,7 +109,7 @@ static void send_data(FILE *fp,RTMP *rtmp){
 		}
 		//i++;
 		RTMP_SendPacket(rtmp,packet,0);
-		usleep(1000);
+		usleep(10000);
 	}
 	return ;
 }
