@@ -147,21 +147,23 @@ static void send_data(FILE *fp,RTMP *rtmp){
 	packet->m_nInfoField2 = rtmp->m_stream_id;
 	
 	while(1){
+		printf("1\n");
 		if(read_data(fp,&packet)){
 			printf("over\n");
 			break;
 		}
-		
+		printf("2\n");
 		if(!RTMP_IsConnected(rtmp)){
 			printf("Disconnect...\n");
 			break;
 		}
-		
+		printf("3\n");
 		diffTs = packet->m_nTimeStamp - preTs;
 		//printf("diffTs:%d\n",(diffTs * 1000));
 		usleep(diffTs * 1000);
 		RTMP_SendPacket(rtmp,packet,0);
 		preTs = packet->m_nTimeStamp;
+		printf("4\n");
 	}
 	return ;
 }
