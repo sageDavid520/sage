@@ -128,7 +128,13 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	char tmp;
 	// aduio
 	if(tt == 8){
-		
+		for(i=1;i<tagDataSize;i++){
+			if(body[i] == '1'){
+				tmp = body[i];
+				body[i] = tmp ^ 0xFF;
+				printf("%c,%c\n",tmp,body[i]);
+			}
+		}
 	}
 	
 	// video
