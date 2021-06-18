@@ -77,7 +77,7 @@ static int transform(FILE *fp,unsigned int len,unsigned int *body){
 		return 1;
 	}
 	
-	*bod = tmp;
+	*body = tmp;
 	return 0;
 }
 
