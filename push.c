@@ -123,13 +123,13 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	//memset(body,0,tagDataSize);
 	
 	dataTmpSize = fread(body,1,tagDataSize,fp);
-	unsigned int i;
+	/*unsigned int i;
 	char tmp;
 	for(i=0;i<tagDataSize;i++){
 		tmp = body[i];
 		body[i] = ~tmp;
 		printf("%c,%c\n",tmp,body[i]);
-	}
+	}*/
 	
 	
 	if(dataTmpSize != tagDataSize){
