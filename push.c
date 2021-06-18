@@ -111,8 +111,9 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	
 	unsigned int i;
 	char tmp;
-	// aduio
+	// audio
 	if(tt == 8 && body[1] == 1){
+		printf("transform audio");
 		for(i=2;i<tagDataSize;i++){
 			tmp = body[i];
 			body[i] = tmp ^ 0xFF;
@@ -122,6 +123,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 
 	// video
 	if(tt == 9 && body[1] == 1){
+		printf("transform video");
 		for(i=5;i<tagDataSize;i++){
 			tmp = body[i];
 			body[i] = tmp ^ 0xFF;
