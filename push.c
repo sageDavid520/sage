@@ -129,8 +129,8 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	// aduio
 	if(tt == 9){
 		printf("====================\n");
-		for(i=0; i<5; ++i){
-		    printf("%s\n",(*body)[i]);
+		for(i=0; i<=5; ++i){
+		    printf("%c\n",body++);
 		}
 		printf("====================\n");
 	}
