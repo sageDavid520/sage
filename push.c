@@ -68,16 +68,6 @@ static int read_ts(FILE *fp,unsigned int *ts){
 	*ts = ((tmp >> 16) & 0xFF) | ((tmp << 16) & 0xFF0000) | (tmp & 0xff00) | (tmp & 0xFF000000);
 	return 0;
 }
-static int transform(FILE *fp,unsigned int len,char *body){
-	unsigned int ret;
-	
-	ret = fread(body,1,len,fp);
-	if(ret != len){
-		return 1;
-	}
-	
-	return 0;
-}
 
 static int read_data(FILE *fp,RTMPPacket **packet){
 	int ret = 1;
@@ -112,12 +102,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	}
 	
 	printf("tt:%d\t tagDataSize:%d\t ts:%d\t streamId:%d\t\n",tt,tagDataSize,ts,streamId);
-	/*
-	if(transform(fp,tagDataSize,(*packet)->m_body)){
-		printf("Failed to read tag body from flv,(tagDataSize=%zu:dataTmpSize=%d)\n",tagDataSize,dataTmpSize);
-		goto __ERROR;
-	}
-	*/
+
 	
 	body = (char*)malloc(tagDataSize);
 	//memset(body,0,tagDataSize);
@@ -127,7 +112,13 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	unsigned int i;
 	char tmp;
 	// aduio
-	
+	if(tt == 8 && body[1] == 1){
+		for(i=2;i<tagDataSize;i++){
+			tmp = body[i];
+			body[i] = tmp ^ 0xFF;
+			//printf("%c,%c\n",tmp,body[i]);
+		}
+	}
 
 	// video
 	if(tt == 9 && body[1] == 1){
