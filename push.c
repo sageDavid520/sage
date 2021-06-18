@@ -178,15 +178,17 @@ static RTMP* connect_rtmp_server(char *addr){
 	
 	rtmp->Link.timeout = 10;
 	RTMP_SetupURL(rtmp,addr);
+	RTMP_EnableWrite(rtmp);
 	
 	if(!RTMP_Connect(rtmp,NULL)){
 		printf("Failed to connect rtmp server\n");
 		goto __ERROR;
 	}
 	
-	RTMP_EnableWrite(rtmp);
-	
-	RTMP_ConnectStream(rtmp,0);
+	if(!RTMP_ConnectStream(rtmp,0)){
+		printf("Failed to connect rtmp server stream\n");
+		goto __ERROR;
+	}
 	
 	return rtmp;
 	
