@@ -127,7 +127,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	unsigned int i;
 	char tmp;
 	// aduio
-	if(tt == 9 && body[1] == '1'){
+	if(tt == 9 && (body[1]-48) == '1'){
 		printf("=====\n");
 	}
 
