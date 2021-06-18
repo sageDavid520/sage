@@ -105,7 +105,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	
 	if(dataTmpSize != tagDataSize){
 		printf("Failed to read tag body from flv,(tagDataSize=%zu:dataTmpSize=%d)\n",tagDataSize,dataTmpSize);
-		//goto __ERROR;
+		goto __ERROR;
 	}
 
 	(*packet)->m_headerType = RTMP_PACKET_SIZE_LARGE;
