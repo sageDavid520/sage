@@ -134,9 +134,11 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	// video
 	
 	if(tt == 9){
+		printf("===================\n");
 		for(i=0;i<5;i++){
 			printf("%c\n",body[i]);
 		}
+		printf("===================\n");
 	}
 	/*
 	if(tt == 9 && body[1] == '1'){
