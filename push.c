@@ -18,7 +18,6 @@ static FILE* open_flv(char *file_name){
 }
 
 static int read_u8(FILE *fp,unsigned int *u8){
-	int ret;
 	unsigned int tmp;
 	
 	ret = fread(&tmp,1,1,fp);
@@ -31,7 +30,6 @@ static int read_u8(FILE *fp,unsigned int *u8){
 }
 
 static int read_u24(FILE *fp,unsigned int *u24){
-	int ret;
 	unsigned int tmp;
 	
 	ret = fread(&tmp,1,3,fp);
@@ -44,7 +42,6 @@ static int read_u24(FILE *fp,unsigned int *u24){
 }
 
 static int read_u32(FILE *fp,unsigned int *u32){
-	int ret;
 	unsigned int tmp;
 	
 	ret = fread(&tmp,1,4,fp);
@@ -57,7 +54,6 @@ static int read_u32(FILE *fp,unsigned int *u32){
 }
 
 static int read_ts(FILE *fp,unsigned int *ts){
-	int ret;
 	unsigned int tmp;
 	
 	ret = fread(&tmp,1,4,fp);
@@ -66,6 +62,17 @@ static int read_ts(FILE *fp,unsigned int *ts){
 	}
 		
 	*ts = ((tmp >> 16) & 0xFF) | ((tmp << 16) & 0xFF0000) | (tmp & 0xff00) | (tmp & 0xFF000000);
+	return 0;
+}
+static int transform(FILE *fp,unsigned int len,unsigned int *body){
+	unsigned int tmp;
+	
+	ret = fread(&tmp,1,len,fp);
+	if(ret != len){
+		return 1;
+	}
+	
+	*bod = tmp;
 	return 0;
 }
 
@@ -78,6 +85,8 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	unsigned int ts;
 	unsigned int streamId;
 	unsigned int preDataSize;
+	unsigned int body;
+	
 	
 	if(read_u8(fp,&tt)){
 		printf("Failed to read 1 byte type\n");
@@ -101,13 +110,19 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	
 	printf("tt:%d\t tagDataSize:%d\t ts:%d\t streamId:%d\t\n",tt,tagDataSize,ts,streamId);
 	
-	dataTmpSize = fread((*packet)->m_body,1,tagDataSize,fp);
+	if(treansform(fp,tagDataSize,&body)){
+		printf("Failed to read tag body from flv,(tagDataSize=%zu:dataTmpSize=%d)\n",tagDataSize,dataTmpSize);
+		goto __ERROR;
+	}
 	
+	
+	//dataTmpSize = fread((*packet)->m_body,1,tagDataSize,fp);
+	/*
 	if(dataTmpSize != tagDataSize){
 		printf("Failed to read tag body from flv,(tagDataSize=%zu:dataTmpSize=%d)\n",tagDataSize,dataTmpSize);
 		goto __ERROR;
 	}
-
+	*/
 	(*packet)->m_headerType = RTMP_PACKET_SIZE_LARGE;
 	(*packet)->m_nTimeStamp = ts;
 	(*packet)->m_packetType = tt;
