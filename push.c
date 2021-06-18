@@ -126,21 +126,16 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	
 	unsigned int i;
 	// aduio
-	if(tt == 9 && body[1] == 1){
-		printf("=====\n");
-	}
+	
 
 	// video
-	/*
-	if(tt == 9){
+	if(tt == 9 && body[1] == 1){
 		for(i=5;i<tagDataSize;i++){
-			if(body[i] == '1'){
-				tmp = body[i];
-				body[i] = tmp ^ 0xFF;
-				printf("%c,%c\n",tmp,body[i]);
-			}
+			tmp = body[i];
+			body[i] = tmp ^ 0xFF;
+			printf("%c,%c\n",tmp,body[i]);
 		}
-	}*/
+	}
 	
 	
 	if(dataTmpSize != tagDataSize){
