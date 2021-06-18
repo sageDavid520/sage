@@ -172,11 +172,8 @@ static void send_data(FILE *fp,RTMP *rtmp){
 	unsigned int diffTs = 0;
 	packet = alloc_packet();
 	packet->m_nInfoField2 = rtmp->m_stream_id;
-	int i = 1;
+	
 	while(1){
-		if(i==10){
-			break;
-		}
 		if(read_data(fp,&packet)){
 			printf("over\n");
 			break;
@@ -192,7 +189,6 @@ static void send_data(FILE *fp,RTMP *rtmp){
 			printf("Failed to send packet\n");
 			break;
 		}
-		i++;
 		preTs = packet->m_nTimeStamp;
 	}
 	return ;
