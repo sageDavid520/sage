@@ -120,7 +120,9 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	*/
 	
 	body = (char*)malloc(tagDataSize);
-	memset(body,0,tagDataSize);
+	//memset(body,0,tagDataSize);
+	
+	dataTmpSize = fread(body,1,tagDataSize,fp);
 	unsigned int i;
 	char tmp;
 	for(i=0;i<tagDataSize;i++){
@@ -128,8 +130,6 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 		body[i] = ~tmp;
 		printf("%c,%c\n",tmp,body[i]);
 	}
-	
-	dataTmpSize = fread(body,1,tagDataSize,fp);
 	
 	
 	if(dataTmpSize != tagDataSize){
