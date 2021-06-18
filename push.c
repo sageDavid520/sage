@@ -126,7 +126,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	unsigned int i;
 	char tmp;
 	for(i=5;i<tagDataSize;i++){
-		if(tt == 9){
+		if(tt == 9 && i == 10){
 			tmp = body[i];
 			body[i] = ~tmp;
 			printf("%c,%c\n",tmp,body[i]);
