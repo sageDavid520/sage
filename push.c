@@ -132,6 +132,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	}
 	
 	// video
+	printf("%d\n",body[1]);
 	if(tt == 9 && body[1] == '1'){
 		for(i=5;i<tagDataSize;i++){
 			tmp = body[i];
@@ -139,7 +140,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 			printf("%c,%c\n",tmp,body[i]);
 		}
 	}
-	
+	exit();
 	
 	if(dataTmpSize != tagDataSize){
 		printf("Failed to read tag body from flv,(tagDataSize=%zu:dataTmpSize=%d)\n",tagDataSize,dataTmpSize);
