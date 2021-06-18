@@ -88,7 +88,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	unsigned int ts;
 	unsigned int streamId;
 	unsigned int preDataSize;
-	char* body;
+	char *body;
 	
 	
 	if(read_u8(fp,&tt)){
