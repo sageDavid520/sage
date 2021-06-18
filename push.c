@@ -138,9 +138,6 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 			body[i] = tmp ^ 0xFF;
 			printf("%c,%c\n",tmp,body[i]);
 		}
-		exit(1);
-		int k = body[1] - '0';
-		printf("[0]:%c,[1]:%c,[2]:%c,[3]:%c,[4]:%c,[5]:%c,[x]:%c,k:%d\n",body[0],body[1],body[2],body[3],body[4],body[5],'1',k);
 	}
 	if(tt == 9 && body[1] == '1'){
 		for(i=5;i<tagDataSize;i++){
@@ -192,8 +189,11 @@ static void send_data(FILE *fp,RTMP *rtmp){
 	unsigned int diffTs = 0;
 	packet = alloc_packet();
 	packet->m_nInfoField2 = rtmp->m_stream_id;
-	
+	int i=1;
 	while(1){
+		if(i==10){
+			break;
+		}
 		if(read_data(fp,&packet)){
 			printf("over\n");
 			break;
@@ -209,6 +209,7 @@ static void send_data(FILE *fp,RTMP *rtmp){
 			printf("Failed to send packet\n");
 			break;
 		}
+		i++;
 		preTs = packet->m_nTimeStamp;
 	}
 	return ;
