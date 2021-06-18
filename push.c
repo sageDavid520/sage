@@ -19,6 +19,7 @@ static FILE* open_flv(char *file_name){
 
 static int read_u8(FILE *fp,unsigned int *u8){
 	unsigned int tmp;
+	unsigned int ret;
 	
 	ret = fread(&tmp,1,1,fp);
 	if(ret != 1){
