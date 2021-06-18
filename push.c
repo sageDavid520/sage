@@ -130,7 +130,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	if(tt == 9){
 		printf("====================\n");
 		for(i=0; i<5; ++i){
-		    printf("%s\n",*body[i]));
+		    printf("%s\n",*body[i]);
 		}
 		printf("====================\n");
 	}
