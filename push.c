@@ -132,6 +132,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	}
 	
 	// video
+	/*
 	if(tt == 9){
 		for(i=5;i<tagDataSize;i++){
 			if(body[i] == '1'){
@@ -140,7 +141,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 				printf("%c,%c\n",tmp,body[i]);
 			}
 		}
-	}
+	}*/
 	
 	
 	if(dataTmpSize != tagDataSize){
