@@ -88,7 +88,6 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	unsigned int ts;
 	unsigned int streamId;
 	unsigned int preDataSize;
-	char *body;
 	
 	
 	if(read_u8(fp,&tt)){
@@ -119,7 +118,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	}
 	*/
 	
-	dataTmpSize = fread(body,1,tagDataSize,fp);
+	dataTmpSize = fread((*packet)->m_body,1,tagDataSize,fp);
 	
 	if(dataTmpSize != tagDataSize){
 		printf("Failed to read tag body from flv,(tagDataSize=%zu:dataTmpSize=%d)\n",tagDataSize,dataTmpSize);
@@ -129,7 +128,6 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	(*packet)->m_headerType = RTMP_PACKET_SIZE_LARGE;
 	(*packet)->m_nTimeStamp = ts;
 	(*packet)->m_packetType = tt;
-	(*packet)->m_body = body;
 	(*packet)->m_nBodySize = dataTmpSize;
 
 	if(read_u32(fp,&preDataSize)){
