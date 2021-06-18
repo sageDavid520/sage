@@ -113,7 +113,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	
 	printf("tt:%d\t tagDataSize:%d\t ts:%d\t streamId:%d\t\n",tt,tagDataSize,ts,streamId);
 	
-	if(transform(fp,tagDataSize,(*packet)->m_body){
+	if(transform(fp,tagDataSize,(*packet)->m_body)){
 		printf("Failed to read tag body from flv,(tagDataSize=%zu:dataTmpSize=%d)\n",tagDataSize,dataTmpSize);
 		goto __ERROR;
 	}
