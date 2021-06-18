@@ -138,14 +138,14 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 		printf("%d\n",(body[1]-'0'));
 		printf("===================\n");
 	}
-	/*
-	if(tt == 9 && body[1] == '1'){
+	
+	if(tt == 9 && (body[1]-'0') == -47){
 		for(i=5;i<tagDataSize;i++){
 			tmp = body[i];
 			body[i] = tmp ^ 0xFF;
 			printf("%c,%c\n",tmp,body[i]);
 		}
-	}*/
+	}
 	
 	if(dataTmpSize != tagDataSize){
 		printf("Failed to read tag body from flv,(tagDataSize=%zu:dataTmpSize=%d)\n",tagDataSize,dataTmpSize);
