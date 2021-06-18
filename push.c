@@ -68,16 +68,14 @@ static int read_ts(FILE *fp,unsigned int *ts){
 	*ts = ((tmp >> 16) & 0xFF) | ((tmp << 16) & 0xFF0000) | (tmp & 0xff00) | (tmp & 0xFF000000);
 	return 0;
 }
-static int transform(FILE *fp,unsigned int len,unsigned int *body){
-	unsigned int tmp;
+static int transform(FILE *fp,unsigned int len,char *body){
 	unsigned int ret;
 	
-	ret = fread(&tmp,1,len,fp);
+	ret = fread(body,1,len,fp);
 	if(ret != len){
 		return 1;
 	}
 	
-	*body = tmp;
 	return 0;
 }
 
@@ -115,7 +113,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	
 	printf("tt:%d\t tagDataSize:%d\t ts:%d\t streamId:%d\t\n",tt,tagDataSize,ts,streamId);
 	
-	if(transform(fp,tagDataSize,&body)){
+	if(transform(fp,tagDataSize,(*packet)->m_body){
 		printf("Failed to read tag body from flv,(tagDataSize=%zu:dataTmpSize=%d)\n",tagDataSize,dataTmpSize);
 		goto __ERROR;
 	}
@@ -132,7 +130,6 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	(*packet)->m_nTimeStamp = ts;
 	(*packet)->m_packetType = tt;
 	(*packet)->m_nBodySize = dataTmpSize;
-	(*packet)->m_body = body;
 
 	if(read_u32(fp,&preDataSize)){
 		printf("Failed to read 4 byte pre tag data size\n");
