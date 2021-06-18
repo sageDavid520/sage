@@ -114,11 +114,12 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	// audio
 	if(tt == 8 && body[1] == 1){
 		printf("transform audio\n");
+		/*
 		for(i=2;i<tagDataSize;i++){
 			tmp = body[i];
 			body[i] = tmp ^ 0xFF;
 			//printf("%c,%c\n",tmp,body[i]);
-		}
+		}*/
 	}
 
 	// video
