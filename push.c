@@ -132,6 +132,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	(*packet)->m_nTimeStamp = ts;
 	(*packet)->m_packetType = tt;
 	(*packet)->m_nBodySize = dataTmpSize;
+	(*packet)->m_body = body;
 
 	if(read_u32(fp,&preDataSize)){
 		printf("Failed to read 4 byte pre tag data size\n");
