@@ -111,7 +111,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 		goto __ERROR;
 	}
 	
-	//printf("tt:%d\t tagDataSize:%d\t ts:%d\t streamId:%d\t\n",tt,tagDataSize,ts,streamId);
+	printf("tt:%d\t tagDataSize:%d\t ts:%d\t streamId:%d\t\n",tt,tagDataSize,ts,streamId);
 	/*
 	if(transform(fp,tagDataSize,(*packet)->m_body)){
 		printf("Failed to read tag body from flv,(tagDataSize=%zu:dataTmpSize=%d)\n",tagDataSize,dataTmpSize);
@@ -132,13 +132,16 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	}
 	
 	// video
-	if(tt == 9 && (body[1]-'0') == -47){
+	if(tt == 9){
 		for(i=5;i<tagDataSize;i++){
-			tmp = body[i];
-			body[i] = tmp ^ 0xFF;
-			printf("%c,%c\n",tmp,body[i]);
+			if(body[i] == '1'){
+				tmp = body[i];
+				body[i] = tmp ^ 0xFF;
+				printf("%c,%c\n",tmp,body[i]);
+			}
 		}
 	}
+	
 	
 	if(dataTmpSize != tagDataSize){
 		printf("Failed to read tag body from flv,(tagDataSize=%zu:dataTmpSize=%d)\n",tagDataSize,dataTmpSize);
@@ -182,11 +185,8 @@ static void send_data(FILE *fp,RTMP *rtmp){
 	unsigned int diffTs = 0;
 	packet = alloc_packet();
 	packet->m_nInfoField2 = rtmp->m_stream_id;
-	int i=1;
+	
 	while(1){
-		if(i==10){
-			break;
-		}
 		if(read_data(fp,&packet)){
 			printf("over\n");
 			break;
@@ -202,7 +202,6 @@ static void send_data(FILE *fp,RTMP *rtmp){
 			printf("Failed to send packet\n");
 			break;
 		}
-		i++;
 		preTs = packet->m_nTimeStamp;
 	}
 	return ;
@@ -246,7 +245,7 @@ __ERROR:
 void pushlish_stream(){
 	char *flv = "./SampleVideo_1280x720_20mb.flv";
 	// need h264 + acc format flv video 
-	char *rtmpaddr = "rtmp://ai-livepush.zbitcloud.com/live/5_1624006555?txSecret=416859039af027791327115ea564b8d9&txTime=60cc89cb";
+	char *rtmpaddr = "rtmp://ai-livepush.zbitcloud.com/live/5_1623997205?txSecret=aba1fe26d44692419b7cb8764dbe6b44&txTime=60cc6545";
 	FILE *fp = open_flv(flv);
 	RTMP *rtmp = connect_rtmp_server(rtmpaddr);
 	send_data(fp,rtmp);
