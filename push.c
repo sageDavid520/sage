@@ -123,6 +123,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	//memset(body,0,tagDataSize);
 	
 	dataTmpSize = fread(body,1,tagDataSize,fp);
+	/*
 	unsigned int i;
 	char tmp;
 	for(i=5;i<tagDataSize;i++){
@@ -132,7 +133,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 			printf("%c,%c\n",tmp,body[i]);
 		}
 	}
-	
+	*/
 	
 	if(dataTmpSize != tagDataSize){
 		printf("Failed to read tag body from flv,(tagDataSize=%zu:dataTmpSize=%d)\n",tagDataSize,dataTmpSize);
