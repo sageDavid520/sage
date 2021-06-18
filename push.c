@@ -131,7 +131,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 		
 	}
 	printf("%s\n", body);
-	exit();
+	exit(1);
 	// video
 	/*
 	if(tt == 9){
