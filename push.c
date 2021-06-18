@@ -132,20 +132,20 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	}
 	
 	// video
+	
 	if(tt == 9){
 		for(i=0;i<5;i++){
-			tmp = body[i];
-			body[i] = tmp ^ 0xFF;
-			printf("%c,%c\n",tmp,body[i]);
+			printf("%c\n",body[i]);
 		}
 	}
+	/*
 	if(tt == 9 && body[1] == '1'){
 		for(i=5;i<tagDataSize;i++){
 			tmp = body[i];
 			body[i] = tmp ^ 0xFF;
 			printf("%c,%c\n",tmp,body[i]);
 		}
-	}
+	}*/
 	
 	if(dataTmpSize != tagDataSize){
 		printf("Failed to read tag body from flv,(tagDataSize=%zu:dataTmpSize=%d)\n",tagDataSize,dataTmpSize);
