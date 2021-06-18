@@ -131,6 +131,13 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 		
 	}
 	
+	for(i=0;i<5;i++){
+		tmp = body[i];
+		body[i] = tmp ^ 0xFF;
+		printf("%c,%c\n",tmp,body[i]);
+	}
+	exit(1);
+	
 	// video
 	if(tt == 9){
 		int k = body[1] - '0';
