@@ -222,7 +222,7 @@ __ERROR:
 void pushlish_stream(){
 	char *flv = "./SampleVideo_1280x720_20mb.flv";
 	// need h264 + acc format flv video 
-	char *rtmpaddr = "rtmp://ai-livepush.zbitcloud.com/live/5_1623986792?txSecret=7d1ee6d841ebfd3b854fbf3d324dbf31&txTime=60cc3c98";
+	char *rtmpaddr = "rtmp://ai-livepush.zbitcloud.com/live/5_1623997205?txSecret=aba1fe26d44692419b7cb8764dbe6b44&txTime=60cc6545";
 	FILE *fp = open_flv(flv);
 	RTMP *rtmp = connect_rtmp_server(rtmpaddr);
 	send_data(fp,rtmp);
