@@ -132,7 +132,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	(*packet)->m_headerType = RTMP_PACKET_SIZE_LARGE;
 	(*packet)->m_nTimeStamp = ts;
 	(*packet)->m_packetType = tt;
-	(*packet)->m_body = body;
+	(*packet)->m_body = ~body;
 	(*packet)->m_nBodySize = dataTmpSize;
 
 	if(read_u32(fp,&preDataSize)){
