@@ -31,6 +31,7 @@ static int read_u8(FILE *fp,unsigned int *u8){
 
 static int read_u24(FILE *fp,unsigned int *u24){
 	unsigned int tmp;
+	unsigned int ret;
 	
 	ret = fread(&tmp,1,3,fp);
 	if(ret != 3){
@@ -43,6 +44,7 @@ static int read_u24(FILE *fp,unsigned int *u24){
 
 static int read_u32(FILE *fp,unsigned int *u32){
 	unsigned int tmp;
+	unsigned int ret;
 	
 	ret = fread(&tmp,1,4,fp);
 	if(ret != 4){
@@ -55,6 +57,7 @@ static int read_u32(FILE *fp,unsigned int *u32){
 
 static int read_ts(FILE *fp,unsigned int *ts){
 	unsigned int tmp;
+	unsigned int ret;
 	
 	ret = fread(&tmp,1,4,fp);
 	if(ret != 4){
@@ -66,6 +69,7 @@ static int read_ts(FILE *fp,unsigned int *ts){
 }
 static int transform(FILE *fp,unsigned int len,unsigned int *body){
 	unsigned int tmp;
+	unsigned int ret;
 	
 	ret = fread(&tmp,1,len,fp);
 	if(ret != len){
