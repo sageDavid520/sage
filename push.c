@@ -129,7 +129,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	// aduio
 	if(tt == 9){
 		printf("====================\n");
-		printf("%c %c %c %c %c\n",body[0],body[1],body[2],body[3],body[4]);
+		printf("%c %c %c %c %c %c %c %c\n",body[0],body[1],body[2],body[3],body[4],body[5],body[6],body[7]);
 		printf("====================\n");
 	}
 
