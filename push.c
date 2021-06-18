@@ -130,7 +130,8 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	if(tt == 8){
 		
 	}
-	
+	printf("%s\n", body);
+	die();
 	// video
 	/*
 	if(tt == 9){
