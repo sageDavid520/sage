@@ -132,7 +132,7 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	}
 	
 	// video
-	printf("%c",body[1]);
+	printf("%c,%c\n",body[1],'1');
 	if(tt == 9 && body[1] == '1'){
 		for(i=5;i<tagDataSize;i++){
 			tmp = body[i];
