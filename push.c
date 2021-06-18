@@ -125,7 +125,6 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 	dataTmpSize = fread(body,1,tagDataSize,fp);
 	
 	unsigned int i;
-	char tmp;
 	// aduio
 	int tmp = body[1] - 48;
 	if(tt == 9 && tmp == 1){
