@@ -50,7 +50,7 @@ static FILE* open_flv(char *file_name){
 	memcpy(c1,body,4);
 	
 	printf("%#x,%#x,%#x,%#x\n",c1[0],c1[1],c1[2],c1[3]);
-	printf("%d\n",atoi(c1));
+	printf("%d\n", ((c1 >> 24 & 0xFF)|(c1 >> 8 & 0xFF00)|(c1 << 8 & 0xFF0000)|(c1 << 24 & 0xFF000000)));
 	/*
 	
 	// 长度 4字节
