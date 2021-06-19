@@ -75,8 +75,7 @@ static FILE* open_flv(char *file_name){
 	
 	// 下一个
 	// 类型 1字节
-	read_u8(fp,&u82);
-	printf("读取1个字节，类型为:%d,0x16:%#x\n",u82);
+	printf("读取1个字节，0x16:%#x\n",body[93889]);
 	
 	
 	
