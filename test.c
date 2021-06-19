@@ -23,7 +23,7 @@ static int read_u32(FILE *fp,unsigned int *u32){
 	if(ret != 4){
 		return 1;
 	}
-	printf("%d\n",tmp);
+
 	*u32 = ((tmp >> 24 & 0xFF)|(tmp >> 8 & 0xFF00)|(tmp << 8 & 0xFF00)|(tmp << 24 & 0xFF000000));
 	return 0;
 }
@@ -61,16 +61,17 @@ static FILE* open_flv(char *file_name){
 	
 	// 下一个
 	read_u32(fp,&u322);
-	printf("读取4个字节，长度为:%d\n",u322);
+	//printf("读取4个字节，长度为:%d\n",u322);// 这里有错误
 	
 	// 类型 1字节
-	//read_u8(fp,&u82);
-	//printf("读取1个字节，类型为:%d\n",u82);
+	read_u8(fp,&u82);
+	printf("读取1个字节，类型为:%d\n",u82);
 	
 	// 读取数据
-	//body = (char*)malloc(u322);
-	//dataTmpSize = fread(body,1,u322,fp);
-	//printf("读取%d个字节主体数据\n",u322);
+	u322 = 93891 - 1;
+	body = (char*)malloc(u322);
+	dataTmpSize = fread(body,1,u322,fp);
+	printf("读取%d个字节主体数据\n",u322);
 	
 	return fp;
 }
