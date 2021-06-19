@@ -28,6 +28,10 @@ static int read_u32(FILE *fp,unsigned int *u32){
 	return 0;
 }
 
+static int dis_video_data(FILE *fp){
+	printf("%#x\n",itoa(673));
+}
+
 static FILE* open_flv(char *file_name){
 	FILE* fp = NULL;
 	
@@ -45,7 +49,7 @@ static FILE* open_flv(char *file_name){
 	char* body;
 	body = (char*)malloc(94577);
 	dataTmpSize = fread(body,1,94577 ,fp);
-	
+	dis_video_data(fp);
 	char c1[4];
 	memcpy(c1,body,4);
 	char *i;
