@@ -24,7 +24,7 @@ static int read_u32(FILE *fp,unsigned int *u32){
 		return 1;
 	}
 	printf("%d\n",tmp);
-	*u32 = ((tmp >> 24 & 0xFF)|(tmp >> 8 & 0xFF00)|(tmp << 8 & 0xFF00)|(tmp << 24 & 0xFF000000));
+	*u32 = ((tmp >> 24 & 0xFF)|(tmp >> 8 & 0xFF00)|(tmp << 8 & 0xFF0000)|(tmp << 24 & 0xFF000000));
 	return 0;
 }
 
