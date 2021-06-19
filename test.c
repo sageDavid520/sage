@@ -80,7 +80,7 @@ static FILE* open_flv(char *file_name){
 	printf("读取%d个字节主体数据\n",u322-1);
 	printf("%#x,%#x,%#x,%#x",body[28351],body[28352],body[28353],body[28354]);
 	*/
-	
+	// 音频 跳过1字节
 	// 下一个
 	// 类型 1字节
 	printf("读取1个字节，0x16:%#x\n",body[93889]);
