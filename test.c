@@ -14,10 +14,12 @@ static FILE* open_flv(char *file_name){
 	char *body;
 	body = (char*)malloc(94577);
 	fread(body,1,94577,fp);
+	// 4 字节长度
 	printf("%#x\n",body[5]);
 	printf("%#x\n",body[6]);
 	printf("%#x\n",body[7]);
 	printf("%#x\n",body[8]);
+	// 1 字节类型
 	printf("%#x\n",body[9]);
 	
 	/*int i;
