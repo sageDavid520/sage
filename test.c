@@ -63,7 +63,7 @@ static FILE* open_flv(char *file_name){
 	char* body2;
 	body2 = (char*)malloc(4);
 	fread(body2,1,4,fp);
-	printf("%s\n",body2);
+	printf("%#x,%#x,%#x,%#x\n",body2[0],body[1],body[2],body[3]);
 	//read_u32(fp,&u322);
 	//printf("读取4个字节，长度为:%d\n",u322);
 	
