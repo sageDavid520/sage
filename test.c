@@ -59,16 +59,7 @@ static FILE* open_flv(char *file_name){
 	
 	char c1[4];
 	memcpy(c1,body,4);
-	printf("%d,%d,%d,%d\n",c1[0],c1[1],c1[2],c1[3]);
-	
-	unsigned int k[4] = {
-		convertHexChar(c1[0]),
-		convertHexChar(c1[1]),
-		convertHexChar(c1[2]),
-		convertHexChar(c1[3])
-		};
-	
-	printf("%#x,%#x,%#x,%#x",k[0],k[1],k[2],k[3]);
+	printf("%#x,%#x,%#x,%#x",c1[0],c1[1],c1[2],c1[3]);
 	/*
 	
 	// 长度 4字节
