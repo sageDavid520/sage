@@ -55,10 +55,10 @@ static FILE* open_flv(char *file_name){
 	
 	// 读取数据
 	char* body;
-	body = (char*)malloc(u32);
-	dataTmpSize = fread(body,1,u32,fp);
-	printf("%#x\n",body[672]);
-	printf("读取%d个字节主体数据\n",u32);
+	body = (char*)malloc(u32-1);
+	dataTmpSize = fread(body,1,u32-1,fp);
+	printf("%#x\n",body[671]);
+	printf("读取%d个字节主体数据\n",u32-1);
 	
 	// 下一个
 	read_u32(fp,&u322);
