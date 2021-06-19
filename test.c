@@ -47,6 +47,9 @@ static FILE* open_flv(char *file_name){
 	unsigned int u8;
 	read_u8(fp,&u8);
 	printf("%d\n",u8);
+	
+	// 读取数据
+	
 	return fp;
 }
 
