@@ -38,6 +38,11 @@ static FILE* open_flv(char *file_name){
 	
 	fseek(fp,416,SEEK_SET);
 	fseek(fp,5,SEEK_CUR);
+	
+	
+	
+	
+	
 	// 长度 4字节
 	unsigned int u32;
 	unsigned int u322;
