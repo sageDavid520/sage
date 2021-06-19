@@ -40,7 +40,9 @@ static FILE* open_flv(char *file_name){
 	fseek(fp,5,SEEK_CUR);
 	// 长度 4字节
 	unsigned int u32;
+	unsigned int u322;
 	unsigned int u8;
+	unsigned int u82;
 	size_t dataTmpSize;
 
 	read_u32(fp,&u32);
@@ -54,20 +56,20 @@ static FILE* open_flv(char *file_name){
 	char* body;
 	body = (char*)malloc(u32-1);
 	dataTmpSize = fread(body,1,u32-1,fp);
-	printf("读取%d个字节主体数据\n",u32);
+	printf("读取%d个字节主体数据\n",u32-1);
 	
 	// 下一个
-	read_u32(fp,&u32);
-	printf("读取4个字节，长度为:%d\n",u32);
+	read_u32(fp,&u322);
+	printf("读取4个字节，长度为:%d\n",u322);
 	
 	// 类型 1字节
-	read_u8(fp,&u8);
-	printf("读取1个字节，类型为:%d\n",u8);
+	read_u8(fp,&u82);
+	printf("读取1个字节，类型为:%d\n",u82);
 	
 	// 读取数据
-	body = (char*)malloc(u32);
-	dataTmpSize = fread(body,1,u32-1,fp);
-	printf("读取%d个字节主体数据\n",u32-1);
+	body = (char*)malloc(u322-1);
+	dataTmpSize = fread(body,1,u322-1,fp);
+	printf("读取%d个字节主体数据\n",u322-1);
 	
 	return fp;
 }
