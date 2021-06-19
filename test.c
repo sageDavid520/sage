@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 static FILE* open_flv(char *file_name){
 	FILE* fp = NULL;
 	
@@ -17,7 +18,7 @@ static FILE* open_flv(char *file_name){
 	fread(body,1,94577,fp);
 	memcpy(len,body+5,4);
 	
-	printf("%d\n",len);
+	printf("%d\n",((len >> 24 & 0xFF)|(len >> 8 & 0xFF00)|(len << 8 & 0xFF00)|(len << 24 & 0xFF000000)));
 	// 4 字节长度
 	printf("%#x\n",len[0]);
 	printf("%#x\n",len[1]);
