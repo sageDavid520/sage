@@ -39,8 +39,13 @@ static FILE* open_flv(char *file_name){
 	fseek(fp,416,SEEK_SET);
 	fseek(fp,5,SEEK_CUR);
 	
+	char* body;
+	body = (char*)malloc(94577);
+	dataTmpSize = fread(body,1,94577 ,fp);
 	
-	
+	char* c1[4];
+	momcpy(c1,body,4);
+	printf("%#x,%#x,%#x,%#x",body[0],body[1],body[2],body[3]);
 	/*
 	
 	// 长度 4字节
