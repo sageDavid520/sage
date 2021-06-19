@@ -14,7 +14,12 @@ static FILE* open_flv(char *file_name){
 	char *body;
 	body = (char*)malloc(94577);
 	fread(body,1,94577,fp);
-	printf("%s\n",body);
+	int i;
+	for(i=0;i<94577;i++){
+		printf("%c",body[i]);
+	}
+	
+	printf("=========\n");
 	return fp;
 }
 
