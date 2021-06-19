@@ -46,11 +46,12 @@ static FILE* open_flv(char *file_name){
 	size_t dataTmpSize;
 
 	read_u32(fp,&u32);
+	// 673
 	printf("读取4个字节，长度为:%d\n",u32);
 	
 	// 类型 1字节
 	read_u8(fp,&u8);
-	printf("读取1个字节，类型为:%d\n",u8);
+	printf("读取1个字节，类型为:%d,0x16:%#x\n",u8);
 	
 	// 读取数据
 	char* body;
