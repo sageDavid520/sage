@@ -61,7 +61,7 @@ static FILE* open_flv(char *file_name){
 	
 	// 下一个
 	read_u32(fp,&u322);
-	//printf("读取4个字节，长度为:%d\n",u322);// 这里有错误
+	printf("读取4个字节，长度为:%d\n",u322);// 这里有错误
 	
 	// 类型 1字节
 	read_u8(fp,&u82);
