@@ -2,6 +2,19 @@
 #include <stdlib.h>
 #include <string.h>
 
+static int read_u8(FILE *fp,unsigned int *u8){
+	unsigned int tmp;
+	unsigned int ret;
+	
+	ret = fread(&tmp,1,1,fp);
+	if(ret != 1){
+		return 1;
+	}
+	
+	*u8 = (tmp & 0xff);
+	return 0;
+}
+
 static int read_u32(FILE *fp,unsigned int *u32){
 	unsigned int tmp;
 	unsigned int ret;
@@ -25,9 +38,15 @@ static FILE* open_flv(char *file_name){
 	
 	fseek(fp,416,SEEK_SET);
 	fseek(fp,5,SEEK_CUR);
+	// 长度 4字节
 	unsigned int u32;
 	read_u32(fp,&u32);
 	printf("%d\n",u32);
+	
+	// 类型 1字节
+	unsigned int u8;
+	read_u8(fp,&u8);
+	printf("%d\n",u8);
 	return fp;
 }
 
