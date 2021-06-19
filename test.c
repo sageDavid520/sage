@@ -12,8 +12,11 @@ static FILE* open_flv(char *file_name){
 	
 	fseek(fp,416,SEEK_SET);
 	char *body;
+	char len[4];
 	body = (char*)malloc(94577);
 	fread(body,1,94577,fp);
+	memcpy(len,body+5,4);
+	printf("%d\n",len);
 	// 4 字节长度
 	printf("%#x\n",body[5]);
 	printf("%#x\n",body[6]);
