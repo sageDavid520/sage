@@ -28,17 +28,29 @@ static int read_u32(FILE *fp,unsigned int *u32){
 	return 0;
 }
 
-static char convertHexChar(char ch){
-	if((ch >= '0') && (ch <= '9'))
-		return ch-0x30;
-	else if((ch >= 'A') && (ch <= 'F'))
-		return ch-'A'+10;
-	else if((ch >= 'a') && (ch <= 'f'))
-		return ch-'a'+10;
-	else 
-		return ch-ch;
+void StringToHex(char *str, unsigned char *strhex)
+{
+	uint8_t i,cnt=0;
+	char *p = str;             
+	uint8_t len = strlen(str);
+	
+	while(*p != '\0') {       
+		for (i = 0; i < len; i ++)  
+		{
+			if ((*p >= '0') && (*p <= '9'))
+				strhex[cnt] = *p - '0' + 0x30;
+			
+			if ((*p >= 'A') && (*p <= 'Z')) 
+				strhex[cnt] = *p - 'A' + 0x41;
+			
+			if ((*p >= 'a') && (*p <= 'z'))
+				strhex[cnt] = *p - 'a' + 0x61;
+		
+			p ++;
+			cnt ++;  
+		}
+	}
 }
-
 static FILE* open_flv(char *file_name){
 	FILE* fp = NULL;
 	
@@ -58,8 +70,10 @@ static FILE* open_flv(char *file_name){
 	dataTmpSize = fread(body,1,94577 ,fp);
 	
 	char c1[4];
+	char c2[4];
 	memcpy(c1,body,4);
-	printf("%#x,%#x,%#x,%#x",c1[0],c1[1],c1[2],c1[3]);
+	StringToHex(&c1,&c2);
+	printf("%#x,%#x,%#x,%#x",c2[0],c2[1],c2[2],c2[3]);
 	/*
 	
 	// 长度 4字节
