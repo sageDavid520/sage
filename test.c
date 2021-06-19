@@ -26,7 +26,7 @@ static FILE* open_flv(char *file_name){
 	fseek(fp,416,SEEK_SET);
 	fseek(fp,5,SEEK_CUR);
 	unsigned int u32;
-	read_u32(fp,u32);
+	read_u32(fp,&u32);
 	printf("%d\n",u32);
 	return fp;
 }
