@@ -2,6 +2,18 @@
 #include <stdlib.h>
 #include <string.h>
 
+static int read_u32(FILE *fp,unsigned int *u32){
+	unsigned int tmp;
+	unsigned int ret;
+	
+	ret = fread(&tmp,1,4,fp);
+	if(ret != 4){
+		return 1;
+	}
+	
+	*u32 = ((tmp >> 24 & 0xFF)|(tmp >> 8 & 0xFF00)|(tmp << 8 & 0xFF00)|(tmp << 24 & 0xFF000000));
+	return 0;
+}
 
 static FILE* open_flv(char *file_name){
 	FILE* fp = NULL;
@@ -13,7 +25,9 @@ static FILE* open_flv(char *file_name){
 	
 	fseek(fp,416,SEEK_SET);
 	fseek(fp,5,SEEK_CUR);
-	
+	unsigned int u32;
+	read_u32(fp,u32);
+	printf("%d\n",u32);
 	return fp;
 }
 
