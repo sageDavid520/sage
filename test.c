@@ -36,6 +36,9 @@ static FILE* open_flv(char *file_name){
 		return fp;
 	}
 	
+	size_t dataTmpSize;
+
+	
 	fseek(fp,416,SEEK_SET);
 	fseek(fp,5,SEEK_CUR);
 	
