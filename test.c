@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 static FILE* open_flv(char *file_name){
 	FILE* fp = NULL;
