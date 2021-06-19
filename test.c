@@ -44,28 +44,30 @@ static FILE* open_flv(char *file_name){
 	size_t dataTmpSize;
 
 	read_u32(fp,&u32);
-	printf("%d\n",u32);
+	printf("读取4个字节，长度为:%d\n",u32);
 	
 	// 类型 1字节
 	read_u8(fp,&u8);
-	printf("%d\n",u8);
+	printf("读取1个字节，类型为:%d\n",u8);
 	
 	// 读取数据
 	char* body;
 	body = (char*)malloc(u32);
 	dataTmpSize = fread(body,1,u32,fp);
+	printf("读取%d个字节主体数据\n",u32);
 	
 	// 下一个
 	read_u32(fp,&u32);
-	printf("%d\n",u32);
+	printf("读取4个字节，长度为:%d\n",u32);
 	
 	// 类型 1字节
 	read_u8(fp,&u8);
-	printf("%d\n",u8);
+	printf("读取1个字节，类型为:%d\n",u8);
 	
 	// 读取数据
 	body = (char*)malloc(u32);
 	dataTmpSize = fread(body,1,u32,fp);
+	printf("读取%d个字节主体数据\n",u32);
 	
 	return fp;
 }
