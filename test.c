@@ -15,13 +15,16 @@ static FILE* open_flv(char *file_name){
 	body = (char*)malloc(94577);
 	fread(body,1,94577,fp);
 	int i;
-	for(i=0;i<94577;i++){
+	
+	printf("%#x\n",body[0]);
+	printf("%#x\n",body[94576]);
+	/*for(i=0;i<94577;i++){
 		if((i + 1) % 16 == 0){
 			printf("%#x\n",body[i]);
 		}else{
 			printf("%#x ",body[i]);
 		}
-	}
+	}*/
 	
 	printf("=========\n");
 	return fp;
