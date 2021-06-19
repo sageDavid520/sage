@@ -18,6 +18,7 @@ static FILE* open_flv(char *file_name){
 	printf("%#x\n",body[6]);
 	printf("%#x\n",body[7]);
 	printf("%#x\n",body[8]);
+	printf("%#x\n",body[9]);
 	
 	/*int i;
 	
