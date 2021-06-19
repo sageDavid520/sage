@@ -13,15 +13,11 @@ static FILE* open_flv(char *file_name){
 	
 	fseek(fp,416,SEEK_SET);
 	char *body;
-	char len[4];
 	body = (char*)malloc(94577);
 	fread(body,1,94577,fp);
-	memcpy(len,body+5,4);
-	int tmp = atoi(len);
-	printf("%d\n",tmp);
 	// 4 字节长度
 	//int x = len[0] + len[1]*256 + len[2]*65536 + len[3]*16777216;
-	int x = len[3] + len[2]*256 + len[1]*65536 + len[0]*16777216;
+	int x = body[5] + len[6]*256 + len[7]*65536 + len[8]*16777216;
 	printf("%d\n",x);
 	printf("%#x\n",len[0]);
 	printf("%#x\n",len[1]);
