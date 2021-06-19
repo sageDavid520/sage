@@ -77,7 +77,7 @@ static FILE* open_flv(char *file_name){
 	body = (char*)malloc(u322-1);
 	dataTmpSize = fread(body,1,u322-1,fp);
 	printf("读取%d个字节主体数据\n",u322-1);
-	printf("%#x,%#x,%#x,%#x",body[28351],body[28352],body[28353],body[28354])
+	printf("%#x,%#x,%#x,%#x",body[28351],body[28352],body[28353],body[28354]);
 	
 	// 下一个
 	// 类型 1字节
