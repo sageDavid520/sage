@@ -72,7 +72,7 @@ static FILE* open_flv(char *file_name){
 	
 	char* c1;
 	char* c2;
-	memcpy(*c1,body,4);
+	memcpy(**c1,body,4);
 	StringToHex(c1,c2);
 	printf("%#x,%#x,%#x,%#x",c2[0],c2[1],c2[2],c2[3]);
 	/*
