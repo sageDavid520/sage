@@ -20,6 +20,8 @@ static FILE* open_flv(char *file_name){
 	int tmp = atoi(len);
 	printf("%d\n",tmp);
 	// 4 字节长度
+	int x = len[0] + len[1]*256 + len[2]*65536 + len[3]*16777216;
+	printf("%d\n",x);
 	printf("%#x\n",len[0]);
 	printf("%#x\n",len[1]);
 	printf("%#x\n",len[2]);
