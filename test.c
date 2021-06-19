@@ -60,17 +60,21 @@ static FILE* open_flv(char *file_name){
 	printf("读取%d个字节主体数据\n",u32-1);
 	
 	// 下一个
-	read_u32(fp,&u322);
-	printf("读取4个字节，长度为:%d\n",u322);
+	char* body2;
+	body2 = (char*)malloc(4);
+	fread(body2,1,4,fp);
+	printf("%s\n",body2);
+	//read_u32(fp,&u322);
+	//printf("读取4个字节，长度为:%d\n",u322);
 	
 	// 类型 1字节
-	read_u8(fp,&u82);
-	printf("读取1个字节，类型为:%d\n",u82);
+	//read_u8(fp,&u82);
+	//printf("读取1个字节，类型为:%d\n",u82);
 	
 	// 读取数据
-	body = (char*)malloc(u322);
-	dataTmpSize = fread(body,1,u322,fp);
-	printf("读取%d个字节主体数据\n",u322);
+	//body = (char*)malloc(u322);
+	//dataTmpSize = fread(body,1,u322,fp);
+	//printf("读取%d个字节主体数据\n",u322);
 	
 	return fp;
 }
