@@ -46,7 +46,7 @@ static FILE* open_flv(char *file_name){
 	body = (char*)malloc(94577);
 	dataTmpSize = fread(body,1,94577 ,fp);
 	
-	char* c1;
+	char c1[4];
 	memcpy(c1,body,4);
 	
 	printf("%#x,%#x,%#x,%#x",c1[0],c1[1],c1[2],c1[3]);
