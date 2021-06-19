@@ -52,18 +52,21 @@ static FILE* open_flv(char *file_name){
 	
 	// 读取数据
 	char* body;
-	body = (char*)malloc(u32);
-	dataTmpSize = fread(body,1,u32,fp);
+	body = (char*)malloc(u32-1);
+	dataTmpSize = fread(body,1,u32-1,fp);
 	
 	// 下一个
-	read_u8(fp,&u8);
-	printf("%d\n",u8);
-	
-	read_u8(fp,&u32);
+	read_u32(fp,&u32);
 	printf("%d\n",u32);
 	
+	// 类型 1字节
 	read_u8(fp,&u8);
 	printf("%d\n",u8);
+	
+	// 读取数据
+	char* body;
+	body = (char*)malloc(u32-1);
+	dataTmpSize = fread(body,1,u32-1,fp);
 	
 	return fp;
 }
