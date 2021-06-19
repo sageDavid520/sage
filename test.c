@@ -12,41 +12,8 @@ static FILE* open_flv(char *file_name){
 	}
 	
 	fseek(fp,416,SEEK_SET);
-	char *body;
-	body = (char*)malloc(94577);
-	fread(body,1,94577,fp);
-	char *tmp;
-	tmp = (char*)malloc(4);
-	momcpy(tmp,body+5,4);
+	fseek(fp,5,SEEK_CUR);
 	
-	//int x = ((tmp >> 24 & 0xFF)|(tmp >> 8 & 0xFF00)|(tmp << 8 & 0xFF00)|(tmp << 24 & 0xFF000000));
-	
-	printf("%#x\n",body[673]);
-	printf("%#x\n",body[674]);
-	printf("%#x\n",body[675]);
-	printf("%#x\n",body[676]);
-	printf("%#x\n",body[677]);
-	printf("%#x\n",body[678]);
-	// 4 字节长度
-	//int x = len[0] + len[1]*256 + len[2]*65536 + len[3]*16777216;
-	//int x = body[8] + body[7]*256 + body[6]*65536 + body[5]*16777216;
-	printf("%d\n",tmp);
-	// 1 字节类型
-	//printf("%#x\n",body[9]);
-	
-	/*int i;
-	
-	printf("%#x\n",body[0]);
-	printf("%#x\n",body[94576]);*/
-	/*for(i=0;i<94577;i++){
-		if((i + 1) % 16 == 0){
-			printf("%#x\n",body[i]);
-		}else{
-			printf("%#x ",body[i]);
-		}
-	}*/
-	
-	printf("=========\n");
 	return fp;
 }
 
