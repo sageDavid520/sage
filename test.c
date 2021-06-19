@@ -57,7 +57,6 @@ static FILE* open_flv(char *file_name){
 	char* body;
 	body = (char*)malloc(u32-1);
 	dataTmpSize = fread(body,1,u32-1,fp);
-	printf("%#x\n",body[671]);
 	printf("读取%d个字节主体数据\n",u32-1);
 	
 	// 下一个
