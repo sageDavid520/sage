@@ -16,12 +16,13 @@ static FILE* open_flv(char *file_name){
 	body = (char*)malloc(94577);
 	fread(body,1,94577,fp);
 	memcpy(len,body+5,4);
+	
 	printf("%d\n",len);
 	// 4 字节长度
-	printf("%#x\n",body[5]);
-	printf("%#x\n",body[6]);
-	printf("%#x\n",body[7]);
-	printf("%#x\n",body[8]);
+	printf("%#x\n",len[0]);
+	printf("%#x\n",len[1]);
+	printf("%#x\n",len[2]);
+	printf("%#x\n",len[3]);
 	// 1 字节类型
 	printf("%#x\n",body[9]);
 	
