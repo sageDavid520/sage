@@ -33,24 +33,22 @@ void StringToHex(char *str, unsigned char *strhex)
 {
 	uint8_t i,cnt=0;
 	char *p = str;             
-	uint8_t len = strlen(str);
-	
-	while(*p != '\0') {       
-		for (i = 0; i < len; i ++)  
-		{
-			if ((*p >= '0') && (*p <= '9'))
-				strhex[cnt] = *p - '0' + 0x30;
-			
-			if ((*p >= 'A') && (*p <= 'Z')) 
-				strhex[cnt] = *p - 'A' + 0x41;
-			
-			if ((*p >= 'a') && (*p <= 'z'))
-				strhex[cnt] = *p - 'a' + 0x61;
-		
-			p ++;
-			cnt ++;  
-		}
+	     
+	for (i = 0; i < 4; i ++)  
+	{
+		if ((*p >= '0') && (*p <= '9'))
+			strhex[cnt] = *p - '0' + 0x30;
+
+		if ((*p >= 'A') && (*p <= 'Z')) 
+			strhex[cnt] = *p - 'A' + 0x41;
+
+		if ((*p >= 'a') && (*p <= 'z'))
+			strhex[cnt] = *p - 'a' + 0x61;
+
+		p ++;
+		cnt ++;  
 	}
+
 }
 static FILE* open_flv(char *file_name){
 	FILE* fp = NULL;
@@ -70,10 +68,8 @@ static FILE* open_flv(char *file_name){
 	body = (char*)malloc(94577);
 	dataTmpSize = fread(body,1,94577 ,fp);
 	
-	char* c1;
 	char* c2;
-	memcpy(**c1,body,4);
-	StringToHex(c1,c2);
+	StringToHex(body,c2);
 	printf("%#x,%#x,%#x,%#x",c2[0],c2[1],c2[2],c2[3]);
 	/*
 	
