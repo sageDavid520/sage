@@ -14,7 +14,7 @@ static FILE* open_flv(char *file_name){
 	char *body;
 	body = (char*)malloc(94577);
 	fread(body,1,94577,fp);
-	printf("%s",body);
+	printf("%s\n",body);
 	return fp;
 }
 
