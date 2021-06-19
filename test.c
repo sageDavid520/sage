@@ -54,11 +54,9 @@ static FILE* open_flv(char *file_name){
 	dataTmpSize = fread(body,1,u32,fp);
 	
 	// 下一个
-	unsigned int u32;
 	read_u32(fp,&u32);
 	printf("%d\n",u32);
 	
-	unsigned int u8;
 	read_u8(fp,&u8);
 	printf("%d\n",u8);
 	
