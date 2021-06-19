@@ -19,7 +19,7 @@ static FILE* open_flv(char *file_name){
 	tmp = (char*)malloc(4);
 	momcpy(tmp,body+5,4);
 	
-	int x = ((tmp >> 24 & 0xFF)|(tmp >> 8 & 0xFF00)|(tmp << 8 & 0xFF00)|(tmp << 24 & 0xFF000000));
+	//int x = ((tmp >> 24 & 0xFF)|(tmp >> 8 & 0xFF00)|(tmp << 8 & 0xFF00)|(tmp << 24 & 0xFF000000));
 	
 	printf("%#x\n",body[673]);
 	printf("%#x\n",body[674]);
@@ -30,7 +30,7 @@ static FILE* open_flv(char *file_name){
 	// 4 字节长度
 	//int x = len[0] + len[1]*256 + len[2]*65536 + len[3]*16777216;
 	//int x = body[8] + body[7]*256 + body[6]*65536 + body[5]*16777216;
-	printf("%d\n",x);
+	printf("%d\n",tmp);
 	// 1 字节类型
 	//printf("%#x\n",body[9]);
 	
