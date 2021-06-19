@@ -48,7 +48,9 @@ static FILE* open_flv(char *file_name){
 	
 	char* c1[4];
 	memcpy(c1,body,4);
-	printf("%#x,%#x,%#x,%#x",body[0],body[1],body[2],body[3]);
+	
+	printf("%#x,%#x,%#x,%#x",c1[0],c1[1],c1[2],c1[3]);
+	printf("%d\n",atoi(c1));
 	/*
 	
 	// 长度 4字节
