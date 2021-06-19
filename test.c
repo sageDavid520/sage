@@ -19,10 +19,6 @@ static FILE* open_flv(char *file_name){
 	//int x = len[0] + len[1]*256 + len[2]*65536 + len[3]*16777216;
 	int x = body[5] + body[6]*256 + body[7]*65536 + body[8]*16777216;
 	printf("%d\n",x);
-	printf("%#x\n",len[0]);
-	printf("%#x\n",len[1]);
-	printf("%#x\n",len[2]);
-	printf("%#x\n",len[3]);
 	// 1 字节类型
 	printf("%#x\n",body[9]);
 	
