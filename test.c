@@ -29,7 +29,9 @@ static int read_u32(FILE *fp,unsigned int *u32){
 }
 
 static int dis_video_data(FILE *fp){
-	printf("%#x\n",itoa(673));
+	char i[100];
+	itoa(673,i,10);
+	printf("%#x",i);
 }
 
 static FILE* open_flv(char *file_name){
