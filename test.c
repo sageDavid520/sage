@@ -15,7 +15,9 @@ static FILE* open_flv(char *file_name){
 	char *body;
 	body = (char*)malloc(94577);
 	fread(body,1,94577,fp);
-	char tmp[4] = {body[5],body[6],body[7],body[8]};
+	char *tmp;
+	tmp = (char*)malloc(4);
+	momcpy(tmp,body+5,4);
 	
 	int x = ((tmp >> 24 & 0xFF)|(tmp >> 8 & 0xFF00)|(tmp << 8 & 0xFF00)|(tmp << 24 & 0xFF000000));
 	
