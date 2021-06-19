@@ -64,7 +64,6 @@ static FILE* open_flv(char *file_name){
 	printf("%d\n",u8);
 	
 	// 读取数据
-	char* body;
 	body = (char*)malloc(u32-1);
 	dataTmpSize = fread(body,1,u32-1,fp);
 	
