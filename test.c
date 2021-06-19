@@ -13,7 +13,7 @@ static FILE* open_flv(char *file_name){
 	fseek(fp,416,SEEK_SET);
 	char *body;
 	body = (char*)malloc(94577);
-	fread(body,1,94577,fp);
+	printf("%d\n",fread(body,1,94577,fp));
 	printf("%s\n",body);
 	return fp;
 }
