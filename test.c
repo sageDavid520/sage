@@ -48,7 +48,7 @@ static FILE* open_flv(char *file_name){
 	
 	char c1[4];
 	memcpy(c1,body,4);
-	unsigned int i;
+	char *i;
 	printf("%#x,%#x,%#x,%#x\n",c1[0],c1[1],c1[2],c1[3]);
 	sprintf(i,"%d",c1);
 	printf("%d\n",i);
