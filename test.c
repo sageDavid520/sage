@@ -68,7 +68,7 @@ static FILE* open_flv(char *file_name){
 	body = (char*)malloc(94577);
 	dataTmpSize = fread(body,1,94577 ,fp);
 	
-	char* c2;
+	char* c2 = NULL;
 	StringToHex(body,c2);
 	printf("%#x,%#x,%#x,%#x",c2[0],c2[1],c2[2],c2[3]);
 	/*
