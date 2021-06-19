@@ -40,6 +40,7 @@ static FILE* open_flv(char *file_name){
 	fseek(fp,5,SEEK_CUR);
 	// 长度 4字节
 	unsigned int u32;
+	size_t dataTmpSize';
 	read_u32(fp,&u32);
 	printf("%d\n",u32);
 	
