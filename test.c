@@ -28,7 +28,15 @@ static int read_u32(FILE *fp,unsigned int *u32){
 	return 0;
 }
 
-static int dis_video_data(FILE *fp){
+static char convertHexChar(char ch){
+	if((ch >= '0') && (ch <= '9'))
+		return ch-0x30;
+	else if((ch >= 'A') && (ch <= 'F'))
+		return ch-'A'+10;
+	else if((ch >= 'a') && (ch <= 'f'))
+		return ch-'a'+10;
+	else 
+		return ch-ch;
 }
 
 static FILE* open_flv(char *file_name){
@@ -53,7 +61,12 @@ static FILE* open_flv(char *file_name){
 	memcpy(c1,body,4);
 	printf("%d,%d,%d,%d\n",c1[0],c1[1],c1[2],c1[3]);
 	
-	unsigned int k[4] = {c1[0]-'0',c1[1]-'0',c1[2]-'0',c1[3]-'0'};
+	unsigned int k[4] = {
+		convertHexChar(c1[0]),
+		convertHexChar(c1[1]),
+		convertHexChar(c1[2]),
+		convertHexChar(c1[3])
+		};
 	
 	printf("%#x,%#x,%#x,%#x",k[0],k[1],k[2],k[3]);
 	/*
