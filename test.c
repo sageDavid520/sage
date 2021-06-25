@@ -93,9 +93,11 @@ static FILE* open_flv(char *file_name){
 	
 	q |= i0;
 	q++;
-	q |= i0;
+	q |= i1;
 	q++;
-	q |= i0;
+	q |= i2;
+	q++;
+	q |= i3;
 	//printf("%d\n",i0);
 	//printf("%d\n",i1);
 	//printf("%d\n",i2);
