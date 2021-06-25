@@ -91,13 +91,10 @@ static FILE* open_flv(char *file_name){
 	int i2 = strtol(c2, &str, 16);
 	int i3 = strtol(c3, &str, 16);
 	
-	q |= i0;
-	q++;
-	q |= i1;
-	q++;
-	q |= i2;
-	q++;
-	q |= i3;
+	q[0] |= i0;
+	q[1] |= i1;
+	q[2] |= i2;
+	q[3] |= i3;
 	//printf("%d\n",i0);
 	//printf("%d\n",i1);
 	//printf("%d\n",i2);
