@@ -84,13 +84,7 @@ static FILE* open_flv(char *file_name){
 
 
 	unsigned long int s[4];
-	char str[4];
-	s[] = {
-		strtol(c0, &str, 16),
-		strtol(c1, &str, 16),
-		strtol(c2, &str, 16),
-		strtol(c3, &str, 16)
-	}
+	char str[4]= {strtol(c0, &str, 16),strtol(c1, &str, 16),strtol(c2, &str, 16),strtol(c3, &str, 16)};
 
 
 
