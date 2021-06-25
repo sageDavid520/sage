@@ -62,8 +62,8 @@ static FILE* open_flv(char *file_name){
 	snprintf(c3, 11, "%#x", body[3]);
 
 	char* str;
-	int *q;
-	int *x;
+	unsigned int *q;
+	unsigned int *x;
 	q = (unsigned int*)malloc(4);
 	memset(q,0,4);
     	int i0 = strtol(c0, &str, 16);
