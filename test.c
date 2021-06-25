@@ -82,10 +82,10 @@ static FILE* open_flv(char *file_name){
 	snprintf(c2, 11, "%#x", body[2]);
 	snprintf(c3, 11, "%#x", body[3]);
 
-	printf("%d",c0);
-	printf("%d",c1);
-	printf("%d",c2);
-	printf("%d",c3);
+	printf("%d\n",c0);
+	printf("%d\n",c1);
+	printf("%d\n",c2);
+	printf("%d\n",c3);
 	//printf("%d\n",*c0-48);
 	//printf("%d\n",*c1-48);
 	//printf("%d\n",*c2-48);
