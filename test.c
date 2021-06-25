@@ -82,9 +82,12 @@ static FILE* open_flv(char *file_name){
 	snprintf(c2, 10, "%#x", body);
 	snprintf(c3, 10, "%#x", body);
 
-
-	unsigned long int s[4];
-	char str[4]= {strtol(c0, &str, 16),strtol(c1, &str, 16),strtol(c2, &str, 16),strtol(c3, &str, 16)};
+	printf("%s",c0);
+	printf("%s",c1);
+	printf("%s",c2);
+	printf("%s",c3);
+	//unsigned long int s[4];
+	//char str[4]= {strtol(c0, &str, 16),strtol(c1, &str, 16),strtol(c2, &str, 16),strtol(c3, &str, 16)};
 
 
 
