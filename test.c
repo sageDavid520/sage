@@ -82,15 +82,20 @@ static FILE* open_flv(char *file_name){
 	snprintf(c2, 11, "%#x", body[2]);
 	snprintf(c3, 11, "%#x", body[3]);
 
-	char* str;     
+	char* str;
+	unsigned int *q;
+	q = (unsigned int*)malloc(4);
+	memset(q,0,4);
     	int i0 = strtol(c0, &str, 16);
 	int i1 = strtol(c1, &str, 16);
 	int i2 = strtol(c2, &str, 16);
 	int i3 = strtol(c3, &str, 16);
 	
-	unsigned int s;
-	s = {i0,i1,i2,i3};
-	printf("%d",s);
+	q |= i0;
+	q++;
+	q |= i0;
+	q++;
+	q |= i0;
 	//printf("%d\n",i0);
 	//printf("%d\n",i1);
 	//printf("%d\n",i2);
