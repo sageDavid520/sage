@@ -72,15 +72,15 @@ static FILE* open_flv(char *file_name){
 	//StringToHex(body,c2);
 	//printf("%#x,%#x,%#x,%#x",body[0],body[1],body[2],body[3]);
 	
-	char* c0;
-	char* c1;
-	char* c2;
-	char* c3;
+	char c0;
+	char c1;
+	char c2;
+	char c3;
 
-	sscanf(body[0], "%#x", c0);
-	sscanf(body[1], "%#x", c1);
-	sscanf(body[2], "%#x", c2);
-	sscanf(body[3], "%#x", c3);
+	sscanf(body[0], "%#x", &c0);
+	sscanf(body[1], "%#x", &c1);
+	sscanf(body[2], "%#x", &c2);
+	sscanf(body[3], "%#x", &c3);
 
 	unsigned long int s[4];
 	char* str;
