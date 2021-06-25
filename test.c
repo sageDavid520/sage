@@ -87,10 +87,9 @@ static FILE* open_flv(char *file_name){
 	printf("%s\n",c2);
 	printf("%s\n",c3);
 	char* str;
-	
 	long st[4]= {strtol(c0, &str, 16),strtol(c1, &str, 16),strtol(c2, &str, 16),strtol(c3, &str, 16)};
-
-
+	
+	 unsigned int x=((st >> 24 & 0xFF)|(st >> 8 & 0xFF00)|(st << 8 & 0xFF0000)|(st << 24 & 0xFF000000))
 
 
 	
