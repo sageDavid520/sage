@@ -70,7 +70,7 @@ static FILE* open_flv(char *file_name){
 	
 	char* c2 = NULL;
 	StringToHex(body,c2);
-	printf("%d",c2);
+	printf("%#x",c2);
 	/*
 	
 	// 长度 4字节
