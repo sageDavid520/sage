@@ -96,7 +96,7 @@ static FILE* open_flv(char *file_name){
 	q[2] |= i2;
 	q[3] |= i3;
 	
-	unsigned int x=((q >> 24 & 0xFF)|(q >> 8 & 0xFF00)|(q << 8 & 0xFF0000)|(q << 24 & 0xFF000000));
+	unsigned int x = ((*q >> 24 & 0xFF)|(*q >> 8 & 0xFF00)|(*q << 8 & 0xFF0000)|(*q << 24 & 0xFF000000));
 	printf("%d\n",x);
 
 	
