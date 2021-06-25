@@ -77,10 +77,10 @@ static FILE* open_flv(char *file_name){
 	char* c2;
 	char* c3;
 
-	vsprintf(c0, "%#x", &body[0]);
-	vsprintf(c1, "%#x", &body[1]);
-	vsprintf(c2, "%#x", &body[2]);
-	vsprintf(c3, "%#x", &body[3]);
+	vsprintf(c0, "%#x", body);
+	vsprintf(c1, "%#x", body);
+	vsprintf(c2, "%#x", body);
+	vsprintf(c3, "%#x", body);
 
 	unsigned long int s[4];
 	char* str;
