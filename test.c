@@ -66,10 +66,10 @@ static FILE* open_flv(char *file_name){
 	unsigned int *x;
 	q = (unsigned int*)malloc(4);
 	memset(q,0,4);
-    	int i0 = strtol(c0, &str, 16);
-	int i1 = strtol(c1, &str, 16);
-	int i2 = strtol(c2, &str, 16);
-	int i3 = strtol(c3, &str, 16);
+    	unsigned int i0 = strtol(c0, &str, 16);
+	unsigned int i1 = strtol(c1, &str, 16);
+	unsigned int i2 = strtol(c2, &str, 16);
+	unsigned int i3 = strtol(c3, &str, 16);
 	
 	q[0] |= i0;
 	q[1] |= i1;
