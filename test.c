@@ -29,27 +29,6 @@ static int read_u32(FILE *fp,unsigned int *u32){
 	return 0;
 }
 
-void StringToHex(char *str, unsigned char *strhex)
-{
-	uint8_t i,cnt=0;
-	char *p = str;             
-	     
-	for (i = 0; i < 4; i ++)  
-	{
-		if ((*p >= '0') && (*p <= '9'))
-			strhex[cnt] = *p - '0' + 0x30;
-
-		if ((*p >= 'A') && (*p <= 'Z')) 
-			strhex[cnt] = *p - 'A' + 0x41;
-
-		if ((*p >= 'a') && (*p <= 'z'))
-			strhex[cnt] = *p - 'a' + 0x61;
-
-		p ++;
-		cnt ++;  
-	}
-
-}
 static FILE* open_flv(char *file_name){
 	FILE* fp = NULL;
 	
@@ -84,6 +63,7 @@ static FILE* open_flv(char *file_name){
 
 	char* str;
 	unsigned int *q;
+	unsigned int *x;
 	q = (unsigned int*)malloc(4);
 	memset(q,0,4);
     	int i0 = strtol(c0, &str, 16);
@@ -96,7 +76,7 @@ static FILE* open_flv(char *file_name){
 	q[2] |= i2;
 	q[3] |= i3;
 	
-	unsigned int x = ((*q >> 24 & 0xFF)|(*q >> 8 & 0xFF00)|(*q << 8 & 0xFF0000)|(*q << 24 & 0xFF000000));
+	*x = ((q >> 24 & 0xFF)|(q >> 8 & 0xFF00)|(q << 8 & 0xFF0000)|(q << 24 & 0xFF000000));
 	printf("%d\n",x);
 
 	
