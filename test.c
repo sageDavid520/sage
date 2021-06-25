@@ -77,10 +77,10 @@ static FILE* open_flv(char *file_name){
 	char c2[10];
 	char c3[10];
 
-	snprintf(c0, 10, "%#x", body);
-	snprintf(c1, 10, "%#x", body);
-	snprintf(c2, 10, "%#x", body);
-	snprintf(c3, 10, "%#x", body);
+	snprintf(c0, 10, "%#x", body[0]);
+	snprintf(c1, 10, "%#x", body[1]);
+	snprintf(c2, 10, "%#x", body[2]);
+	snprintf(c3, 10, "%#x", body[3]);
 
 	printf("%#x",c0);
 	printf("%#x",c1);
