@@ -77,23 +77,14 @@ static FILE* open_flv(char *file_name){
 	char c2[11];
 	char c3[11];
 
-	snprintf(c0, 11, "%#x", body[0]);
-	snprintf(c1, 11, "%#x", body[1]);
-	snprintf(c2, 11, "%#x", body[2]);
-	snprintf(c3, 11, "%#x", body[3]);
+	snprintf(c0, 11, "%d", body[0]);
+	snprintf(c1, 11, "%d", body[1]);
+	snprintf(c2, 11, "%d", body[2]);
+	snprintf(c3, 11, "%d", body[3]);
 
-	printf("%s\n",c0);
-	printf("%s\n",c1);
-	printf("%s\n",c2);
-	printf("%s\n",c3);
-	char* str;
-	long int *st;
-	*st = strtol(c0, &str, 10);
-	*st = strtol(c1, &str, 10);
-	*st = strtol(c2, &str, 10);
-	*st = strtol(c3, &str, 10);
+	printf("%d\n",(int)c0);
 	
-	 unsigned int x=((st >> 24 & 0xFF)|(st >> 8 & 0xFF00)|(st << 8 & 0xFF0000)|(st << 24 & 0xFF000000))
+	 //unsigned int x=((st >> 24 & 0xFF)|(st >> 8 & 0xFF00)|(st << 8 & 0xFF0000)|(st << 24 & 0xFF000000))
 
 
 	
