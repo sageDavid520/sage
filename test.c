@@ -82,7 +82,7 @@ static FILE* open_flv(char *file_name){
 	snprintf(c2, 11, "%d", body[2]);
 	snprintf(c3, 11, "%d", body[3]);
 
-	printf("%d\n",(int)c0);
+	printf("%d\n",(int)(*c0));
 	
 	 //unsigned int x=((st >> 24 & 0xFF)|(st >> 8 & 0xFF00)|(st << 8 & 0xFF0000)|(st << 24 & 0xFF000000))
 
