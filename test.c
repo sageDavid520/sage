@@ -50,10 +50,28 @@ static FILE* open_flv(char *file_name){
 	body = (char*)malloc(94577);
 	dataTmpSize = fread(body,1,94577 ,fp);
 	unsigned int len;
-	len =   ((0x000000FF & body[0] << 24) | (0x000000FF & body[1] << 16) | (0x000000FF & body[2]) << 8) | (0x000000FF & body[3]);
-	printf("%#x\n",len);
-	printf("%#x\n",(0x000000FF & body[2] << 8));
-	printf("%d\n",((0x000000FF & body[0] << 24) | (0x000000FF & body[1] << 16) | (0x000000FF & body[2]) << 8) | (0x000000FF & body[3]));
+	unsigned int i;
+	while(1){
+		len_index_0 = index + 0;
+		len_index_1 = index + 1;
+		len_index_2 = index + 2;
+		len_index_3 = index + 3;
+		data_index_0 = index + 4;
+		len =  ((0x000000FF & body[0] << 24) | (0x000000FF & body[1] << 16) | (0x000000FF & body[2]) << 8) | (0x000000FF & body[3]);
+		data_index_1 = data_index_0 + len;
+		cur_total_len = data_index_1 + 1;
+		if(cur_total_len > 94577){
+			break;
+		}
+		// 判断只要是nula数据直接取反
+		for(i = data_index_0; i <= data_index_1; i++){
+			body[i] = ~body[i];
+		}
+	}
+	//len =  ((0x000000FF & body[0] << 24) | (0x000000FF & body[1] << 16) | (0x000000FF & body[2]) << 8) | (0x000000FF & body[3]);
+	//printf("%#x\n",len);
+	//printf("%#x\n",(0x000000FF & body[2] << 8));
+	//printf("%d\n",((0x000000FF & body[0] << 24) | (0x000000FF & body[1] << 16) | (0x000000FF & body[2]) << 8) | (0x000000FF & body[3]));
 		
 	//printf("%#x\n",((0x000000FF & body[2] << 8) | (0x000000FF & body[1] << 16) | (0x000000FF & body[0] << 24) | body[3]));
 	/*
