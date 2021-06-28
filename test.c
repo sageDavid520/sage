@@ -64,7 +64,7 @@ static FILE* open_flv(char *file_name){
 		unsigned int data_st;
 		unsigned int data_sp;
 
-		unsigned int index = 6;
+		unsigned int index = 5;
 		unsigned int i;
 
 		while(1){
