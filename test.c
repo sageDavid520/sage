@@ -51,71 +51,70 @@ static FILE* open_flv(char *file_name){
 	
 	// 前5个字节为描述 第二个字节为AVCPackeType 0 配置 1具体数据
 	if(body[1] == 0x01){
-		printf("1");
-		return ;
+		unsigned int len;
+		unsigned int len_byte_0;
+		unsigned int len_byte_1;
+		unsigned int len_byte_2;
+		unsigned int len_byte_3;
+		char byte_0;
+		char byte_1;
+		char byte_2;
+		char byte_3;
+
+		unsigned int data_st;
+		unsigned int data_sp;
+
+		unsigned int index = 6;
+		unsigned int i;
+
+		while(1){
+
+			len_byte_0 = index + 0;
+			len_byte_1 = index + 1;
+			len_byte_2 = index + 2;
+			len_byte_3 = index + 3;
+			byte_0 = body[len_byte_0];
+			byte_1 = body[len_byte_1];
+			byte_2 = body[len_byte_2];
+			byte_3 = body[len_byte_3];
+
+			printf("解析到的长度数据0位:%#x\n",byte_0);
+			printf("解析到的长度数据1位:%#x\n",byte_1);
+			printf("解析到的长度数据2位:%#x\n",byte_2);
+			printf("解析到的长度数据3位:%#x\n",byte_3);
+
+
+			//len =  ((0x000000FF & byte_0 << 24) | (0x000000FF & byte_1 << 16) | (0x000000FF & byte_2) << 8) | (0x000000FF & byte_3);
+			len = (
+			  ((0x000000FF & byte_0) << 24) | 
+			  ((0x000000FF & byte_1) << 16) | 
+			  ((0x000000FF & byte_2) << 8) | 
+			  (0x000000FF & byte_3));
+
+			printf("解析到的数据长度:%d\n",len);
+
+			data_st = index + 4;
+			data_sp = data_st + len;
+
+			printf("开始下标:%d,结束下标:%d\n",data_st,data_sp);
+
+			printf("0:%#x\n",(0xff & body[data_st+0]));
+			printf("0:%#x\n",(0xff & body[data_st+1]));
+			printf("0:%#x\n",(0xff & body[data_st+2]));
+			printf("0:%#x\n",(0xff & body[data_st+3]));
+			if(data_sp > 94577){
+				break;
+			}
+			// 判断只要是nula数据直接取反
+			for(i = data_st; i < data_sp; i++){
+				body[i] = ~body[i];
+			}
+
+			index = data_sp;
+		}
 	}
 	
-	unsigned int len;
-	unsigned int len_byte_0;
-	unsigned int len_byte_1;
-	unsigned int len_byte_2;
-	unsigned int len_byte_3;
-	char byte_0;
-	char byte_1;
-	char byte_2;
-	char byte_3;
-
-	unsigned int data_st;
-	unsigned int data_sp;
-
-	unsigned int index = 0;
-	unsigned int i;
 	
-	while(1){
-		
-		len_byte_0 = index + 0;
-		len_byte_1 = index + 1;
-		len_byte_2 = index + 2;
-		len_byte_3 = index + 3;
-		byte_0 = body[len_byte_0];
-		byte_1 = body[len_byte_1];
-		byte_2 = body[len_byte_2];
-		byte_3 = body[len_byte_3];
-		
-		printf("解析到的长度数据0位:%#x\n",byte_0);
-		printf("解析到的长度数据1位:%#x\n",byte_1);
-		printf("解析到的长度数据2位:%#x\n",byte_2);
-		printf("解析到的长度数据3位:%#x\n",byte_3);
-		
-		
-		//len =  ((0x000000FF & byte_0 << 24) | (0x000000FF & byte_1 << 16) | (0x000000FF & byte_2) << 8) | (0x000000FF & byte_3);
-		len = (
-		  ((0x000000FF & byte_0) << 24) | 
-		  ((0x000000FF & byte_1) << 16) | 
-		  ((0x000000FF & byte_2) << 8) | 
-		  (0x000000FF & byte_3));
-		
-		printf("解析到的数据长度:%d\n",len);
-		
-		data_st = index + 4;
-		data_sp = data_st + len;
-		
-		printf("开始下标:%d,结束下标:%d\n",data_st,data_sp);
-		
-		printf("0:%#x\n",(0xff & body[data_st+0]));
-		printf("0:%#x\n",(0xff & body[data_st+1]));
-		printf("0:%#x\n",(0xff & body[data_st+2]));
-		printf("0:%#x\n",(0xff & body[data_st+3]));
-		if(data_sp > 94577){
-			break;
-		}
-		// 判断只要是nula数据直接取反
-		for(i = data_st; i < data_sp; i++){
-			body[i] = ~body[i];
-		}
-		
-		index = data_sp;
-	}
 	//len =  ((0x000000FF & body[0] << 24) | (0x000000FF & body[1] << 16) | (0x000000FF & body[2]) << 8) | (0x000000FF & body[3]);
 	//printf("%#x\n",len);
 	//printf("%#x\n",(0x000000FF & body[2] << 8));
