@@ -51,6 +51,8 @@ static FILE* open_flv(char *file_name){
 	dataTmpSize = fread(body,1,94577 ,fp);
 
 	printf("%#x\n",(0x000000FF & body[0] << 24));
+	printf("%#x\n",(0x000000FF & body[1] << 16));
+	printf("%#x\n",(0x000000FF & body[2] << 8));
 	
 
 	//printf("%#x\n",((0x000000FF & body[2] << 8) | (0x000000FF & body[1] << 16) | (0x000000FF & body[0] << 24) | body[3]));
