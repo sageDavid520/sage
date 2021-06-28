@@ -69,6 +69,89 @@ static int read_ts(FILE *fp,unsigned int *ts){
 	return 0;
 }
 
+static int disVideoTagData(char *body,unsigned int length){
+	// 前5个字节为描述 第二个字节为AVCPackeType 0 配置 1具体数据
+	if(body[1] != 0x01){
+		return 0;	
+	}
+	unsigned int len;
+	unsigned int len_byte_0;
+	unsigned int len_byte_1;
+	unsigned int len_byte_2;
+	unsigned int len_byte_3;
+	char byte_0;
+	char byte_1;
+	char byte_2;
+	char byte_3;
+
+	unsigned int data_st;
+	unsigned int data_sp;
+
+	unsigned int index = 5;
+	unsigned int i;
+
+	while(1){
+		printf("当前下标:%d\n",index);
+		if(index >= length){
+			break;
+		}
+		len_byte_0 = index + 0;
+		len_byte_1 = index + 1;
+		len_byte_2 = index + 2;
+		len_byte_3 = index + 3;
+		byte_0 = body[len_byte_0];
+		byte_1 = body[len_byte_1];
+		byte_2 = body[len_byte_2];
+		byte_3 = body[len_byte_3];
+
+		//printf("解析到的长度数据0位:%#x\n",byte_0);
+		//printf("解析到的长度数据1位:%#x\n",byte_1);
+		//printf("解析到的长度数据2位:%#x\n",byte_2);
+		//printf("解析到的长度数据3位:%#x\n",byte_3);
+
+
+		//len =  ((0x000000FF & byte_0 << 24) | (0x000000FF & byte_1 << 16) | (0x000000FF & byte_2) << 8) | (0x000000FF & byte_3);
+		len = (
+		  ((0x000000FF & byte_0) << 24) | 
+		  ((0x000000FF & byte_1) << 16) | 
+		  ((0x000000FF & byte_2) << 8) | 
+		  (0x000000FF & byte_3));
+
+		//printf("解析到的数据长度:%d\n",len);
+
+		data_st = index + 4;
+		data_sp = data_st + len;
+
+		//printf("开始下标:%d,结束下标:%d\n",data_st,data_sp);
+
+		//printf("0:%#x\n",(0xff & body[data_st+0]));
+		//printf("1:%#x\n",(0xff & body[data_st+1]));
+		//printf("2:%#x\n",(0xff & body[data_st+2]));
+		//printf("3:%#x\n",(0xff & body[data_st+3]));
+
+		// 判断只要是nula数据直接取反
+		for(i = data_st; i < data_sp; i++){
+			body[i] = ~body[i];
+		}
+
+		index = data_sp;
+	}
+	return 0;
+}
+
+static int disAudioTagData(char *body,unsigned int len){
+	// 前2个字节为描述 第二个字节为AVCPackeType 0 配置 1具体数据
+	if(body[1] != 0x01){
+		return 0;
+	}
+	unsigned int i = 2;
+	for(i = 2; i < len; i++){
+		body[i] = ~body[i];
+	}
+	return 0;
+}
+
+
 static int read_data(FILE *fp,RTMPPacket **packet){
 	int ret = 1;
 	size_t dataTmpSize = 0;
@@ -105,32 +188,19 @@ static int read_data(FILE *fp,RTMPPacket **packet){
 
 	
 	body = (char*)malloc(tagDataSize);
-	//memset(body,0,tagDataSize);
 	
 	dataTmpSize = fread(body,1,tagDataSize,fp);
 	
-	unsigned int i;
-	char tmp;
 	// audio
-	if(tt == 8 && body[1] == 1){
+	if(tt == 8){
 		printf("transform audio\n");
-		/*
-		for(i=2;i<tagDataSize;i++){
-			tmp = body[i];
-			body[i] = tmp ^ 0xFF;
-			//printf("%c,%c\n",tmp,body[i]);
-		}*/
+		disVideoTagData(body,tagDataSize);
 	}
 
 	// video
-	if(tt == 9 && body[1] == 1){
+	if(tt == 9){
 		printf("transform video\n");
-		
-		for(i=10;i<tagDataSize;i++){
-			tmp = body[i];
-			body[i] = tmp ^ 0xFF;
-			//printf("%c,%c\n",tmp,body[i]);
-		}
+		disVideoTagData(body,tagDataSize);
 	}
 	
 	
