@@ -24,7 +24,7 @@ static int read_u32(FILE *fp,unsigned int *u32){
 	if(ret != 4){
 		return 1;
 	}
-	printf("%#x",tmp);
+	printf("%#x\n",tmp);
 	*u32 = ((tmp >> 24 & 0xFF)|(tmp >> 8 & 0xFF00)|(tmp << 8 & 0xFF0000)|(tmp << 24 & 0xFF000000));
 	return 0;
 }
@@ -55,7 +55,7 @@ static FILE* open_flv(char *file_name){
 	a = body[0] << 24 | body[1] << 16 | body[2] << 8 | body[3];
 	c = body[3] << 24 | body[2] << 16 | body[1] << 8 | body[0];
 	printf("%#x\n",a);
-	printf("%#x",c);
+	printf("%#x\n",c);
 	//char* c2 = NULL;
 	//StringToHex(body,c2);
 	//printf("%#x,%#x,%#x,%#x",(*body)[0],(*body)[1],(*body)[2],(*body)[3]);
