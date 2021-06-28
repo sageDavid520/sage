@@ -87,10 +87,10 @@ static FILE* open_flv(char *file_name){
 		
 		printf("开始下标:%d,结束下标:%d\n",data_st,data_sp);
 		
-		printf("0:%#x\n",(0xff & body[data_sp+4]));
-		printf("0:%#x\n",(0xff & body[data_sp+5]));
-		printf("0:%#x\n",(0xff & body[data_sp+6]));
-		printf("0:%#x\n",(0xff & body[data_sp+7]));
+		printf("0:%#x\n",(0xff & body[data_st+0]));
+		printf("0:%#x\n",(0xff & body[data_st+1]));
+		printf("0:%#x\n",(0xff & body[data_st+2]));
+		printf("0:%#x\n",(0xff & body[data_st+3]));
 		if(data_sp > 94577){
 			break;
 		}
