@@ -49,22 +49,17 @@ static FILE* open_flv(char *file_name){
 	char* body;
 	body = (char*)malloc(94577);
 	dataTmpSize = fread(body,1,94577 ,fp);
-
-	printf("%d\n",(
-		(0x000000FF & body[0] << 24) | 
-		(0x000000FF & body[1] << 16) | 
-		(0x000000FF & body[2]) << 8) | 
-	        (0x000000FF & body[3])
-	      );
+	unsigned int len;
+	len =   (
+			(0x000000FF & body[0] << 24) | 
+			(0x000000FF & body[1] << 16) | 
+			(0x000000FF & body[2]) << 8) | 
+	        	(0x000000FF & body[3])
+		);
 	
-	printf("body[0]:%c,%#x\n",body[0],body[0]);
-	printf("body[1]:%c,%#x\n",body[1],body[1]);
-	printf("body[2]:%c,%#x\n",body[2],body[2]);
-	printf("body[3]:%c,%#x\n",body[3],body[3]);
-	printf("body[4]:%c,%#x\n",body[4],body[4]);
-	printf("body[5]:%c,%#x\n",body[5],body[5]);
-	printf("body[6]:%c,%#x\n",body[6],body[6]);
-	printf("body[7]:%c,%#x\n",body[7],body[7]);
+	printf("%d\n",len);
+	
+	
 
 	//printf("%#x\n",((0x000000FF & body[2] << 8) | (0x000000FF & body[1] << 16) | (0x000000FF & body[0] << 24) | body[3]));
 	/*
