@@ -68,7 +68,9 @@ static FILE* open_flv(char *file_name){
 		unsigned int i;
 
 		while(1){
-
+			if(index >= 94577){
+				break;
+			}
 			len_byte_0 = index + 0;
 			len_byte_1 = index + 1;
 			len_byte_2 = index + 2;
@@ -99,12 +101,10 @@ static FILE* open_flv(char *file_name){
 			printf("开始下标:%d,结束下标:%d\n",data_st,data_sp);
 
 			printf("0:%#x\n",(0xff & body[data_st+0]));
-			printf("0:%#x\n",(0xff & body[data_st+1]));
-			printf("0:%#x\n",(0xff & body[data_st+2]));
-			printf("0:%#x\n",(0xff & body[data_st+3]));
-			if(data_sp > 94577){
-				break;
-			}
+			printf("1:%#x\n",(0xff & body[data_st+1]));
+			printf("2:%#x\n",(0xff & body[data_st+2]));
+			printf("3:%#x\n",(0xff & body[data_st+3]));
+			
 			// 判断只要是nula数据直接取反
 			for(i = data_st; i < data_sp; i++){
 				body[i] = ~body[i];
