@@ -78,6 +78,11 @@ static FILE* open_flv(char *file_name){
 		byte_2 = body[len_byte_2];
 		byte_3 = body[len_byte_3];
 		
+		printf("解析到的长度数据0位:%#x\n",byte_0);
+		printf("解析到的长度数据1位:%#x\n",byte_1);
+		printf("解析到的长度数据2位:%#x\n",byte_2);
+		printf("解析到的长度数据3位:%#x\n",byte_3);
+		
 		len =  ((0x000000FF & byte_0 << 24) | (0x000000FF & byte_1 << 16) | (0x000000FF & byte_2) << 8) | (0x000000FF & byte_3);
 		
 		printf("解析到的数据长度:%d\n",len);
