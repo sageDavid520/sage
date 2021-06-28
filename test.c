@@ -80,12 +80,12 @@ static FILE* open_flv(char *file_name){
 	//printf("%#x\n",len);
 	//printf("%d\n",len);
 	printf("%#x\n",*q);
-	printf("%#x\n",(0x000000FF & i0));
-	printf("%#x\n",(0x000000FF  & i1 << 8));
-	printf("%#x\n",(0x000000FF & i2 << 16));
-	printf("%#x\n",(0x000000FF & i3 << 24));
+	printf("%d\n",(0x000000FF & i0));
+	printf("%d\n",(0x000000FF  & i1 << 8));
+	printf("%d\n",(0x000000FF & i2 << 16));
+	printf("%d\n",(0x000000FF & i3 << 24));
 
-	printf("%#x\n",((i0 & 0x000000FF) | (i1 & 0x000000FF << 8) | (i2 & 0x000000FF << 16) | (i3 & 0x000000FF << 24)));
+	//printf("%#x\n",((i0 & 0x000000FF) | (i1 & 0x000000FF << 8) | (i2 & 0x000000FF << 16) | (i3 & 0x000000FF << 24)));
 	//printf("%d\n",(i0 | i1 | i2 | i3));
 	//*x = ((*q >> 24 & 0xFF)|(*q >> 8 & 0xFF00)|(*q << 8 & 0xFF0000)|(*q << 24 & 0xFF000000));
 	//*x = ((i0 >> 24 & 0xFF)|(i1 >> 8 & 0xFF00)|(i2 << 8 & 0xFF0000)|(i3 << 24 & 0xFF000000));
