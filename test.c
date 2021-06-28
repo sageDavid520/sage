@@ -93,7 +93,7 @@ static FILE* open_flv(char *file_name){
 			break;
 		}*/
 		// 判断只要是nula数据直接取反
-		//for(i = data_index_0; i <= data_index_1; i++){
+		//for(i = data_index_0; i < data_index_1; i++){
 		//	body[i] = ~body[i];
 		//}
 		break;
