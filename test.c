@@ -49,7 +49,7 @@ static FILE* open_flv(char *file_name){
 	
 	//char* c2 = NULL;
 	//StringToHex(body,c2);
-	printf("%#x,%#x,%#x,%#x",(*body)[0],(*body)[1],(*body)[2],(*body)[3]);
+	//printf("%#x,%#x,%#x,%#x",(*body)[0],(*body)[1],(*body)[2],(*body)[3]);
 	
 	char c0[11];
 	char c1[11];
@@ -75,6 +75,10 @@ static FILE* open_flv(char *file_name){
 	//q[1] |= i1;
 	//q[2] |= i2;
 	//q[3] |= i3;
+	i0 = 0x00;
+	i1 = 0x00;
+	i2 = 0x02;
+	i3 = 0xA1;
 	
 	//unsigned int len[4] = {i0,i1,i2,i3};
 	//printf("%#x\n",len);
