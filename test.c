@@ -55,13 +55,17 @@ static FILE* open_flv(char *file_name){
 	printf("%c\n",body[2]);
 	printf("%c\n",body[3]);
 	
-	int a=0;
-	int c=0;
+	int a = 0;
+	int c = 0;
+	int d = 0;
 	a = *(int*)body;
+	
+	d = body[0] | body[1] | body[2] | body[3];
 	a = body[0] << 24 | body[1] << 16 | body[2] << 8 | body[3];
 	c = body[3] << 24 | body[2] << 16 | body[1] << 8 | body[0];
 	printf("%#x\n",a);
 	printf("%#x\n",c);
+	printf("%#x\n",d);
 	//char* c2 = NULL;
 	//StringToHex(body,c2);
 	//printf("%#x,%#x,%#x,%#x",(*body)[0],(*body)[1],(*body)[2],(*body)[3]);
