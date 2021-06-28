@@ -50,25 +50,48 @@ static FILE* open_flv(char *file_name){
 	body = (char*)malloc(94577);
 	dataTmpSize = fread(body,1,94577 ,fp);
 	unsigned int len;
+	unsigned int len_byte_0;
+	unsigned int len_byte_1;
+	unsigned int len_byte_2;
+	unsigned int len_byte_3;
+	char byte_0;
+	char byte_1;
+	char byte_2;
+	char byte_3;
+	
+	unsigned int data_type_0;
+	unsigned int data_type_1;
+	
+	unsigned int index = 0;
 	unsigned int i;
 	while(1){
-		len_index_0 = index + 0;
-		len_index_1 = index + 1;
-		len_index_2 = index + 2;
-		len_index_3 = index + 3;
-		data_index_0 = index + 4;
-		len =  ((0x000000FF & body[0] << 24) | (0x000000FF & body[1] << 16) | (0x000000FF & body[2]) << 8) | (0x000000FF & body[3]);
+
+		len_byte_0 = index + 0;
+		len_byte_1 = index + 1;
+		len_byte_2 = index + 2;
+		len_byte_3 = index + 3;
+		byte_0 = body[len_type_0];
+		byte_1 = body[len_type_1];
+		byte_2 = body[len_type_2];
+		byte_3 = body[len_type_3];
+		
+		len =  ((0x000000FF & byte_0 << 24) | (0x000000FF & byte_1 << 16) | (0x000000FF & byte_2) << 8) | (0x000000FF & byte_3);
+		
 		printf("解析到的数据长度:%d\n",len);
-		data_index_1 = data_index_0 + len;
-		printf("开始下标:%d,结束下标:%d\n",data_index_0,data_index_1);
+		
+		data_type_0 = index + 4;
+		data_type_1 = data_type_0 + len;
+		
+		printf("开始下标:%d,结束下标:%d\n",data_type_0,data_type_1);
+		
 		/*cur_total_len = data_index_1 + 1;
 		if(cur_total_len > 94577){
 			break;
 		}*/
 		// 判断只要是nula数据直接取反
-		for(i = data_index_0; i <= data_index_1; i++){
-			body[i] = ~body[i];
-		}
+		//for(i = data_index_0; i <= data_index_1; i++){
+		//	body[i] = ~body[i];
+		//}
 		break;
 	}
 	//len =  ((0x000000FF & body[0] << 24) | (0x000000FF & body[1] << 16) | (0x000000FF & body[2]) << 8) | (0x000000FF & body[3]);
