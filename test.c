@@ -52,7 +52,7 @@ static FILE* open_flv(char *file_name){
 	int a=0;
 	a = *(int*)body;
 	a = body[0] << 24 | body[1] << 16 | body[2] << 8 | body[3];
-	printf("%d",a);
+	printf("%#x",a);
 	//char* c2 = NULL;
 	//StringToHex(body,c2);
 	//printf("%#x,%#x,%#x,%#x",(*body)[0],(*body)[1],(*body)[2],(*body)[3]);
