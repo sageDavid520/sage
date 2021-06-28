@@ -71,10 +71,13 @@ static FILE* open_flv(char *file_name){
 	int i2 = strtol(c2, &str, 16);
 	int i3 = strtol(c3, &str, 16);
 	
-	q[0] |= i0;
-	q[1] |= i1;
-	q[2] |= i2;
-	q[3] |= i3;
+	q |= i0;
+	q++;
+	q |= i1;
+	q++;
+	q |= i2;
+	q++;
+	q |= i3;
 	
 	*x = ((*q >> 24 & 0xFF)|(*q >> 8 & 0xFF00)|(*q << 8 & 0xFF0000)|(*q << 24 & 0xFF000000));
 	//*x = ((i0 >> 24 & 0xFF)|(i1 >> 8 & 0xFF00)|(i2 << 8 & 0xFF0000)|(i3 << 24 & 0xFF000000));
