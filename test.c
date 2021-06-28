@@ -131,6 +131,7 @@ static FILE* open_flv(char *file_name){
 	dataTmpSize = fread(body,1,94577 ,fp);
 	
 	disVideoTagData(body,94577);
+	disAudioTagData(body,94577);
 	
 	
 	
