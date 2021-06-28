@@ -38,64 +38,65 @@ static FILE* open_flv(char *file_name){
 	}
 	
 	size_t dataTmpSize;
-
+	unsigned int u32;
 	
 	fseek(fp,416,SEEK_SET);
 	fseek(fp,5,SEEK_CUR);
+	read_u32(fp,u32);
 	
-	char* body;
-	body = (char*)malloc(94577);
-	dataTmpSize = fread(body,1,94577 ,fp);
+	//char* body;
+	//body = (char*)malloc(94577);
+	//dataTmpSize = fread(body,1,94577 ,fp);
 	
 	//char* c2 = NULL;
 	//StringToHex(body,c2);
 	//printf("%#x,%#x,%#x,%#x",(*body)[0],(*body)[1],(*body)[2],(*body)[3]);
 	
-	char c0[11];
-	char c1[11];
-	char c2[11];
-	char c3[11];
+	//char c0[11];
+	//char c1[11];
+	//char c2[11];
+	//char c3[11];
 
-	snprintf(c0, 11, "%#x", body[0]);
-	snprintf(c1, 11, "%#x", body[1]);
-	snprintf(c2, 11, "%#x", body[2]);
-	snprintf(c3, 11, "%#x", body[3]);
+	//snprintf(c0, 11, "%#x", body[0]);
+	//snprintf(c1, 11, "%#x", body[1]);
+	//snprintf(c2, 11, "%#x", body[2]);
+	//snprintf(c3, 11, "%#x", body[3]);
 
-	char* str;
-	unsigned int *q;
-	unsigned int *x;
-	q = (unsigned int*)malloc(4);
-	memset(q,0,4);
-    	int i0 = strtol(c0, &str, 16);
-	int i1 = strtol(c1, &str, 16);
-	int i2 = strtol(c2, &str, 16);
-	int i3 = strtol(c3, &str, 16);
+	//char* str;
+	//unsigned int *q;
+	//unsigned int *x;
+	//q = (unsigned int*)malloc(4);
+	//memset(q,0,4);
+    	//int i0 = strtol(c0, &str, 16);
+	//int i1 = strtol(c1, &str, 16);
+	//int i2 = strtol(c2, &str, 16);
+	//int i3 = strtol(c3, &str, 16);
 	
 	//q[0] |= i0;
 	//q[1] |= i1;
 	//q[2] |= i2;
 	//q[3] |= i3;
-	i0 = 0x00;
-	i1 = 0x00;
-	i2 = 0x02;
-	i3 = 0xA1;
+	//i0 = 0x00;
+	//i1 = 0x00;
+	//i2 = 0x02;
+	//i3 = 0xA1;
 	
 	//unsigned int len[4] = {i0,i1,i2,i3};
 	//printf("%#x\n",len);
 	//printf("%d\n",len);
-	printf("%#x\n",*q);
-	printf("%#x,",i0);
-	printf("%#x,",i1);
-	printf("%#x,",i2);
-	printf("%#x\n",i3);
+	//printf("%#x\n",*q);
+	//printf("%#x,",i0);
+	//printf("%#x,",i1);
+	//printf("%#x,",i2);
+	//printf("%#x\n",i3);
 	//printf("%#x\n",0x000000FF);
-	printf("%d\n",(0xFFFFFFFF & i0 << 24 >> 24));
-	printf("%d\n",(0xFFFFFFFF  & i1 << 24 >> 16));
-	printf("%d\n",(0xFFFFFFFF & i2 << 24 >> 8));
-	printf("%d\n",(0xFFFFFFFF & i3 << 24));
+	//printf("%d\n",(0xFFFFFFFF & i0 << 24 >> 24));
+	//printf("%d\n",(0xFFFFFFFF  & i1 << 24 >> 16));
+	//printf("%d\n",(0xFFFFFFFF & i2 << 24 >> 8));
+	//printf("%d\n",(0xFFFFFFFF & i3 << 24));
 	
-	*q = ((0xFFFFFFFF & i3 << 24) | (0xFFFFFFFF & i2 << 24 >> 8) | (0xFFFFFFFF  & i1 << 24 >> 16) | (0xFFFFFFFF & i0 << 24 >> 24));
-	printf("%d\n",q);
+	//*q = ((0xFFFFFFFF & i3 << 24) | (0xFFFFFFFF & i2 << 24 >> 8) | (0xFFFFFFFF  & i1 << 24 >> 16) | (0xFFFFFFFF & i0 << 24 >> 24));
+	//printf("%d\n",q);
 
 	//printf("%#x\n",((i0 & 0x000000FF) | (i1 & 0x000000FF << 8) | (i2 & 0x000000FF << 16) | (i3 & 0x000000FF << 24)));
 	//printf("%d\n",(i0 | i1 | i2 | i3));
