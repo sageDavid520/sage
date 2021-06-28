@@ -10,9 +10,9 @@ int main(){
     0x6e,
     0xc3
   };
-  printf("%#x",i[0]);
-  printf("%#x",i[1]);
-  printf("%#x",i[2]);
-  printf("%#x",i[3]);
+  printf("%#x\n",i[0]);
+  printf("%#x\n",i[1]);
+  printf("%#x\n",i[2]);
+  printf("%#x\n",i[3]);
   return ;
 }
