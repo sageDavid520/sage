@@ -51,6 +51,7 @@ static int disVideoTagData(char *body,unsigned int length){
 	unsigned int i;
 
 	while(1){
+		printf("当前下标:%d\n",index);
 		if(index >= length){
 			break;
 		}
@@ -83,10 +84,10 @@ static int disVideoTagData(char *body,unsigned int length){
 
 		//printf("开始下标:%d,结束下标:%d\n",data_st,data_sp);
 
-		printf("0:%#x\n",(0xff & body[data_st+0]));
-		printf("1:%#x\n",(0xff & body[data_st+1]));
-		printf("2:%#x\n",(0xff & body[data_st+2]));
-		printf("3:%#x\n",(0xff & body[data_st+3]));
+		//printf("0:%#x\n",(0xff & body[data_st+0]));
+		//printf("1:%#x\n",(0xff & body[data_st+1]));
+		//printf("2:%#x\n",(0xff & body[data_st+2]));
+		//printf("3:%#x\n",(0xff & body[data_st+3]));
 
 		// 判断只要是nula数据直接取反
 		for(i = data_st; i < data_sp; i++){
