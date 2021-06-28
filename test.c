@@ -49,23 +49,24 @@ static FILE* open_flv(char *file_name){
 	char* body;
 	body = (char*)malloc(94577);
 	dataTmpSize = fread(body,1,94577 ,fp);
-	unsigned int len;
-	unsigned int len_byte_0;
-	unsigned int len_byte_1;
-	unsigned int len_byte_2;
-	unsigned int len_byte_3;
-	char byte_0;
-	char byte_1;
-	char byte_2;
-	char byte_3;
 	
-	unsigned int data_type_0;
-	unsigned int data_type_1;
-	
-	unsigned int index = 0;
-	unsigned int i;
 	while(1){
+		unsigned int len;
+		unsigned int len_byte_0;
+		unsigned int len_byte_1;
+		unsigned int len_byte_2;
+		unsigned int len_byte_3;
+		char byte_0;
+		char byte_1;
+		char byte_2;
+		char byte_3;
 
+		unsigned int data_type_0;
+		unsigned int data_type_1;
+
+		unsigned int index = 0;
+		unsigned int i;
+		
 		len_byte_0 = index + 0;
 		len_byte_1 = index + 1;
 		len_byte_2 = index + 2;
