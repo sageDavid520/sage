@@ -58,15 +58,18 @@ static FILE* open_flv(char *file_name){
 		len_index_3 = index + 3;
 		data_index_0 = index + 4;
 		len =  ((0x000000FF & body[0] << 24) | (0x000000FF & body[1] << 16) | (0x000000FF & body[2]) << 8) | (0x000000FF & body[3]);
+		printf("解析到的数据长度:%d\n",len);
 		data_index_1 = data_index_0 + len;
-		cur_total_len = data_index_1 + 1;
+		printf("开始下标:%d,结束下标:%d\n",data_index_0,data_index_1);
+		/*cur_total_len = data_index_1 + 1;
 		if(cur_total_len > 94577){
 			break;
-		}
+		}*/
 		// 判断只要是nula数据直接取反
 		for(i = data_index_0; i <= data_index_1; i++){
 			body[i] = ~body[i];
 		}
+		break;
 	}
 	//len =  ((0x000000FF & body[0] << 24) | (0x000000FF & body[1] << 16) | (0x000000FF & body[2]) << 8) | (0x000000FF & body[3]);
 	//printf("%#x\n",len);
