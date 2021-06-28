@@ -29,7 +29,7 @@ static int read_u32(FILE *fp,unsigned int *u32){
 	return 0;
 }
 
-static int disVideoTagData(char *body){
+static int disVideoTagData(char *body,unsigned int length){
 	// 前5个字节为描述 第二个字节为AVCPackeType 0 配置 1具体数据
 	if(body[1] != 0x01){
 		return 0;	
@@ -51,7 +51,7 @@ static int disVideoTagData(char *body){
 	unsigned int i;
 
 	while(1){
-		if(index >= 94577){
+		if(index >= length){
 			break;
 		}
 		len_byte_0 = index + 0;
@@ -97,8 +97,16 @@ static int disVideoTagData(char *body){
 	}
 	return 0;
 }
-static int disAudioTagData(body){
-	
+static int disAudioTagData(char *body,unsigned int len){
+	// 前2个字节为描述 第二个字节为AVCPackeType 0 配置 1具体数据
+	if(body[1] != 0x01){
+		return 0;
+	}
+	unsigned int i = 2;
+	for(i = 2; i < len; i++){
+		body[i] = ~body[i];
+	}
+	return 0;
 }
 
 static FILE* open_flv(char *file_name){
