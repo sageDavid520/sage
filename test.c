@@ -53,6 +53,7 @@ static FILE* open_flv(char *file_name){
 	printf("%#x\n",(0x000000FF & body[0]));
 	printf("%#x\n",(0x000000FF & body[1]));
 	printf("%#x\n",(0x000000FF & body[2]));
+	printf("%#x\n",(0x000000FF & body[3]));
 	
 
 	//printf("%#x\n",((0x000000FF & body[2] << 8) | (0x000000FF & body[1] << 16) | (0x000000FF & body[0] << 24) | body[3]));
