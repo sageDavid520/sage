@@ -44,7 +44,7 @@ static FILE* open_flv(char *file_name){
 	fseek(fp,5,SEEK_CUR);
 	read_u32(fp,&u32);
 	
-	printf("%#x",u32);
+	printf("%#x\n%d\n",u32,u32);
 	
 	//char* body;
 	//body = (char*)malloc(94577);
