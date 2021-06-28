@@ -42,13 +42,19 @@ static FILE* open_flv(char *file_name){
 	
 	fseek(fp,416,SEEK_SET);
 	fseek(fp,5,SEEK_CUR);
-	read_u32(fp,&u32);
+	//read_u32(fp,&u32);
 	
-	printf("%#x\n%d\n",u32,u32);
-	return NULL;
+	//printf("%#x\n%d\n",u32,u32);
+	//return NULL;
 	char* body;
 	body = (char*)malloc(94577);
 	dataTmpSize = fread(body,1,94577 ,fp);
+	
+	printf("%c\n",body[0]);
+	printf("%c\n",body[1]);
+	printf("%c\n",body[2]);
+	printf("%c\n",body[3]);
+	
 	int a=0;
 	int c=0;
 	a = *(int*)body;
