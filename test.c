@@ -63,10 +63,10 @@ static int disVideoTagData(char *body){
 		byte_2 = body[len_byte_2];
 		byte_3 = body[len_byte_3];
 
-		printf("解析到的长度数据0位:%#x\n",byte_0);
-		printf("解析到的长度数据1位:%#x\n",byte_1);
-		printf("解析到的长度数据2位:%#x\n",byte_2);
-		printf("解析到的长度数据3位:%#x\n",byte_3);
+		//printf("解析到的长度数据0位:%#x\n",byte_0);
+		//printf("解析到的长度数据1位:%#x\n",byte_1);
+		//printf("解析到的长度数据2位:%#x\n",byte_2);
+		//printf("解析到的长度数据3位:%#x\n",byte_3);
 
 
 		//len =  ((0x000000FF & byte_0 << 24) | (0x000000FF & byte_1 << 16) | (0x000000FF & byte_2) << 8) | (0x000000FF & byte_3);
@@ -76,12 +76,12 @@ static int disVideoTagData(char *body){
 		  ((0x000000FF & byte_2) << 8) | 
 		  (0x000000FF & byte_3));
 
-		printf("解析到的数据长度:%d\n",len);
+		//printf("解析到的数据长度:%d\n",len);
 
 		data_st = index + 4;
 		data_sp = data_st + len;
 
-		printf("开始下标:%d,结束下标:%d\n",data_st,data_sp);
+		//printf("开始下标:%d,结束下标:%d\n",data_st,data_sp);
 
 		printf("0:%#x\n",(0xff & body[data_st+0]));
 		printf("1:%#x\n",(0xff & body[data_st+1]));
@@ -97,8 +97,8 @@ static int disVideoTagData(char *body){
 	}
 	return 0;
 }
-static int disAudioTagData(){
-
+static int disAudioTagData(body){
+	
 }
 
 static FILE* open_flv(char *file_name){
