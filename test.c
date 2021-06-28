@@ -71,14 +71,15 @@ static FILE* open_flv(char *file_name){
 	int i2 = strtol(c2, &str, 16);
 	int i3 = strtol(c3, &str, 16);
 	
-	q[0] |= i0;
-	q[1] |= i1;
-	q[2] |= i2;
-	q[3] |= i3;
+	//q[0] |= i0;
+	//q[1] |= i1;
+	//q[2] |= i2;
+	//q[3] |= i3;
 	
-	unsigned int len[4] = {i0,i1,i2,i3};
-	printf("%#x\n",len);
-	printf("%d\n",len);
+	//unsigned int len[4] = {i0,i1,i2,i3};
+	//printf("%#x\n",len);
+	//printf("%d\n",len);
+	printf("%#x\n",*q);
 	printf("%#x\n",(0x000000FF & i0));
 	printf("%#x\n",(i1 & 0x000000FF << 8));
 	printf("%#x\n",(i2 & 0x000000FF << 16));
