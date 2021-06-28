@@ -76,7 +76,7 @@ static FILE* open_flv(char *file_name){
 	q[2] |= i2;
 	q[3] |= i3;
 	
-	printf("%#x\n",(i0 & 0xFF));
+	printf("%#x\n",(i0 & 0x000000FF));
 	printf("%#x\n",i1);
 	printf("%#x\n",i2);
 	printf("%#x\n",i3);
