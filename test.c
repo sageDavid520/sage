@@ -41,7 +41,6 @@ static FILE* open_flv(char *file_name){
 	unsigned int u32;
 	
 	fseek(fp,416,SEEK_SET);
-	fseek(fp,5,SEEK_CUR);
 	//read_u32(fp,&u32);
 	
 	//printf("%#x\n%d\n",u32,u32);
@@ -50,6 +49,11 @@ static FILE* open_flv(char *file_name){
 	body = (char*)malloc(94577);
 	dataTmpSize = fread(body,1,94577 ,fp);
 	
+	// 前5个字节为描述 第二个字节为AVCPackeType 0 配置 1具体数据
+	if(body[1] == 0x01){
+		printf("1");
+		return ;
+	}
 	
 	unsigned int len;
 	unsigned int len_byte_0;
