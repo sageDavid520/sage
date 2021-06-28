@@ -76,10 +76,7 @@ static FILE* open_flv(char *file_name){
 	q[2] |= i2;
 	q[3] |= i3;
 	
-	i0 & 0xFF;
-	i1 & 0xFF00;
-	i2 & 0xff0000;
-	i3 & 0xff000000;
+	(i0 & 0xFF | i1 & 0xFF00 | i2 & 0xff0000 | i3 & 0xff000000);
 	//*x = ((*q >> 24 & 0xFF)|(*q >> 8 & 0xFF00)|(*q << 8 & 0xFF0000)|(*q << 24 & 0xFF000000));
 	//*x = ((i0 >> 24 & 0xFF)|(i1 >> 8 & 0xFF00)|(i2 << 8 & 0xFF0000)|(i3 << 24 & 0xFF000000));
 	//printf("%d\n",x);
